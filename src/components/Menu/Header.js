@@ -15,6 +15,7 @@ const Header = () => {
       pos="sticky"
       top="0"
       bg="white"
+      zIndex="dropdown"
     >
       <Center>
         <DrawerMenu />
