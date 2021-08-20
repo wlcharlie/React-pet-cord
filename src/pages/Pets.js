@@ -1,7 +1,17 @@
-import { Fragment } from 'react';
+import PetsContainer from '../components/layouts/PetsContainer';
+import PetCard from '../components/Pets/PetCard';
 
 const Pets = () => {
-  return <Fragment></Fragment>;
+  return (
+    <PetsContainer>
+      <PetCard />
+      <PetCard />
+      <PetCard />
+      <PetCard />
+      <PetCard />
+      <PetCard />
+    </PetsContainer>
+  );
 };
 
 export default Pets;

@@ -6,6 +6,7 @@ import {
   Redirect,
   Link as ReachLink,
 } from 'react-router-dom';
+import Pets from '../pages/Pets';
 
 const Index = () => {
   const location = useLocation();
@@ -16,7 +17,7 @@ const Index = () => {
         <p>here you are at records? {location.pathname}</p>
       </Route>
       <Route path="/pets">
-        <p>here you are at pets? {location.pathname}</p>
+        <Pets />
       </Route>
       <Route path="/login">
         <p>here you are at login? {location.pathname}</p>
