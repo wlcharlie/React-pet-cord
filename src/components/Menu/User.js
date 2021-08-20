@@ -20,7 +20,6 @@ const User = () => {
         boxSize="50px"
         bgImage="url(https://bit.ly/sage-adebayo)"
         bgPosition="center"
-        bgRepeat="no-repeat"
         bgSize="contain"
         _hover={{ bgColor: 'none' }}
         _active={{ bgColor: 'none' }}

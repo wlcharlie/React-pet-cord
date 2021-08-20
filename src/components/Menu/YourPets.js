@@ -11,7 +11,11 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 const YourPets = () => {
   return (
     <Menu>
-      <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+      <MenuButton
+        as={Button}
+        rightIcon={<ChevronDownIcon />}
+        d={['none', 'block']}
+      >
         Your Cats
       </MenuButton>
       <MenuList>
