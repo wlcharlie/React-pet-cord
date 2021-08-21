@@ -1,12 +1,14 @@
-import { Stack, Skeleton } from '@chakra-ui/react';
+import { Spinner } from '@chakra-ui/react';
 
 const Loading = () => {
   return (
-    <Stack>
-      <Skeleton height="20px" />
-      <Skeleton height="20px" />
-      <Skeleton height="20px" />
-    </Stack>
+    <Spinner
+      thickness="4px"
+      speed="0.65s"
+      emptyColor="gray.200"
+      color="blue.500"
+      size="xl"
+    />
   );
 };
 
