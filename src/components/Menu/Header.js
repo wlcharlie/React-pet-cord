@@ -15,6 +15,7 @@ const Header = () => {
       top="0"
       bg="white"
       zIndex="dropdown"
+      h="7%"
     >
       <Center>
         <DrawerMenu />
