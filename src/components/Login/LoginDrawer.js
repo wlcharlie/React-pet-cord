@@ -1,6 +1,7 @@
 import { Fragment, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth';
+import { useHistory } from 'react-router';
 
 import {
   Drawer,
@@ -20,8 +21,12 @@ import RegisterForm from './RegisterForm';
 
 const LoginDrawer = () => {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const [form, setForm] = useState('login');
+  const formChangeHandler = () => {
+    form === 'login' ? setForm('register') : setForm('login');
+  };
+
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const loginData = { loginEmail: useRef(), loginPassword: useRef() };
@@ -30,10 +35,6 @@ const LoginDrawer = () => {
     regEmail: useRef(),
     regPassword: useRef(),
     regPasswordCheck: useRef(),
-  };
-
-  const formChangeHandler = () => {
-    form === 'login' ? setForm('register') : setForm('login');
   };
 
   const submitHandler = async e => {
@@ -53,6 +54,7 @@ const LoginDrawer = () => {
       }
       const data = await res.json();
       dispatch(authActions.login({ token: data.idToken }));
+      history.replace('/pets');
     }
 
     if (form === 'register') {
@@ -61,6 +63,12 @@ const LoginDrawer = () => {
       const email = regEmail.current.value;
       const password = regPassword.current.value;
       const passwordCheck = regPasswordCheck.current.value;
+      if (passwordCheck !== password) {
+        setError('Both password fields are not identical');
+        setLoading(false);
+        return;
+      }
+
       const res = await registerAPI({ email, password });
 
       if (!res.ok) {

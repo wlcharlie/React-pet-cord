@@ -17,11 +17,11 @@ const LoginForm = props => {
         <Text mb={3} fontSize={24} fontWeight="bolder">
           LOGIN
         </Text>
-        <FormControl id="email">
+        <FormControl id="email" mb={2}>
           <FormLabel>Email address</FormLabel>
           <Input type="email" isRequired ref={loginEmail} />
         </FormControl>
-        <FormControl id="password">
+        <FormControl id="password" mb={2}>
           <FormLabel>Password</FormLabel>
           <Input type="password" isRequired ref={loginPassword} />
         </FormControl>
