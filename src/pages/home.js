@@ -1,13 +1,13 @@
 import { Fragment } from 'react';
 import Header from '../components/Menu/Header';
 
-const Records = () => {
+const Home = () => {
   return (
     <Fragment>
       <Header />
-      <p> no thing at records page</p>
+      <p> no thing at home page</p>
     </Fragment>
   );
 };
 
-export default Records;
+export default Home;
