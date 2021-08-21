@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 
 const LoginForm = props => {
+  const { loginEmail, loginPassword } = props.loginData;
   return (
     <DrawerBody>
       <Flex h="100%" direction="column" justify="center">
@@ -18,11 +19,11 @@ const LoginForm = props => {
         </Text>
         <FormControl id="email">
           <FormLabel>Email address</FormLabel>
-          <Input type="email" isRequired />
+          <Input type="email" isRequired ref={loginEmail} />
         </FormControl>
         <FormControl id="password">
           <FormLabel>Password</FormLabel>
-          <Input type="password" isRequired />
+          <Input type="password" isRequired ref={loginPassword} />
         </FormControl>
 
         <Divider my={3} />
