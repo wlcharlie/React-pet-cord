@@ -8,7 +8,6 @@ import User from './User';
 const Header = () => {
   return (
     <Flex
-      mb={3}
       p={1}
       boxShadow="base"
       align="center"

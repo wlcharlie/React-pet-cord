@@ -4,6 +4,7 @@ const Pets = props => {
   return (
     <Container
       maxW={['container.sm', null, null, 'container.xl']}
+      mt={3}
       py={2}
       d={['grid', 'flex', null, 'grid']}
       gridTemplateColumns={[null, null, null, '1fr 1fr']}
