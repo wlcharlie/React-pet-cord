@@ -19,9 +19,11 @@ const LoginDrawer = () => {
 
   return (
     <Fragment>
-      <Drawer isOpen={true} placement={['bottom', null, 'right']} size="md">
+      <Drawer isOpen={true} placement="right" size="md">
         <form action="/" method="post">
-          <DrawerContent>
+          <DrawerContent
+            background={['rgba(255,255,255,0.95)', null, null, 'white']}
+          >
             <DrawerHeader textAlign="center">PetCord</DrawerHeader>
 
             {form === 'login' && (
