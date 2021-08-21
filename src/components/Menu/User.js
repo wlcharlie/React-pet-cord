@@ -1,7 +1,6 @@
 import {
   Flex,
   Button,
-  Image,
   Menu,
   MenuButton,
   MenuList,

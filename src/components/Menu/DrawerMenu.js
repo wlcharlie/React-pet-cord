@@ -1,7 +1,6 @@
 import { Fragment, useRef } from 'react';
 import { FiMenu } from 'react-icons/fi';
 import {
-  Flex,
   Text,
   Button,
   Drawer,
@@ -12,13 +11,12 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
-  Input,
 } from '@chakra-ui/react';
 import { MdPets, MdHome, MdFavorite } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 
 const MenuButton = props => {
-  const style = {
+  const styles = {
     home: <MdHome size={20} />,
     pets: <MdPets size={20} />,
     records: <MdFavorite size={20} />,
@@ -28,7 +26,7 @@ const MenuButton = props => {
     <Button
       as={NavLink}
       to={`/${props.style}`}
-      leftIcon={style[props.style]}
+      leftIcon={styles[props.styles]}
       size="lg"
       justifyContent="start"
       bg="transparent"
@@ -65,9 +63,9 @@ const DrawerMenu = props => {
           </DrawerHeader>
 
           <DrawerBody d="flex" flexDirection="column">
-            <MenuButton style="home">Home</MenuButton>
-            <MenuButton style="pets">Pets</MenuButton>
-            <MenuButton style="records">Health Records</MenuButton>
+            <MenuButton styles="home">Home</MenuButton>
+            <MenuButton styles="pets">Pets</MenuButton>
+            <MenuButton styles="records">Health Records</MenuButton>
           </DrawerBody>
 
           <DrawerFooter>Footer</DrawerFooter>

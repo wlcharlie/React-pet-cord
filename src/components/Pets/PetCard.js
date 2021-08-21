@@ -5,7 +5,6 @@ import {
   Divider,
   Flex,
   Button,
-  Badge,
   Tag,
 } from '@chakra-ui/react';
 import { FaCat, FaHeart, FaPen } from 'react-icons/fa';
