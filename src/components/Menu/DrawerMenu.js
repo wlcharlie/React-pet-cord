@@ -15,6 +15,32 @@ import {
   Input,
 } from '@chakra-ui/react';
 import { MdPets, MdHome, MdFavorite } from 'react-icons/md';
+import { NavLink } from 'react-router-dom';
+
+const MenuButton = props => {
+  const style = {
+    home: <MdHome size={20} />,
+    pets: <MdPets size={20} />,
+    records: <MdFavorite size={20} />,
+  };
+
+  return (
+    <Button
+      as={NavLink}
+      to={`/${props.style}`}
+      leftIcon={style[props.style]}
+      size="lg"
+      justifyContent="start"
+      bg="transparent"
+      px={2}
+      mb={2}
+      _hover={{ bg: '#fea42a', color: 'white' }}
+      activeStyle={{ backgroundColor: '#fea42a', color: 'white' }}
+    >
+      {props.children}
+    </Button>
+  );
+};
 
 const DrawerMenu = props => {
   const btnRef = useRef();
@@ -39,45 +65,9 @@ const DrawerMenu = props => {
           </DrawerHeader>
 
           <DrawerBody d="flex" flexDirection="column">
-            <Button
-              leftIcon={<MdHome size={20} />}
-              size="lg"
-              justifyContent="start"
-              bg="transparent"
-              px={2}
-              mb={1}
-              _hover={{ bg: '#fea42a', color: 'white' }}
-              _focus={{ bg: '#fea42a', color: 'white' }}
-              _active={{ bg: '#fea42a', color: 'white' }}
-            >
-              Home
-            </Button>
-            <Button
-              leftIcon={<MdPets size={20} />}
-              size="lg"
-              justifyContent="start"
-              bg="transparent"
-              px={2}
-              mb={1}
-              _hover={{ bg: '#fea42a', color: 'white' }}
-              _focus={{ bg: '#fea42a', color: 'white' }}
-              _active={{ bg: '#fea42a', color: 'white' }}
-            >
-              Pets
-            </Button>
-            <Button
-              leftIcon={<MdFavorite size={20} />}
-              size="lg"
-              justifyContent="start"
-              bg="transparent"
-              px={2}
-              mb={1}
-              _hover={{ bg: '#fea42a', color: 'white' }}
-              _focus={{ bg: '#fea42a', color: 'white' }}
-              _active={{ bg: '#fea42a', color: 'white' }}
-            >
-              Health Records
-            </Button>
+            <MenuButton style="home">Home</MenuButton>
+            <MenuButton style="pets">Pets</MenuButton>
+            <MenuButton style="records">Health Records</MenuButton>
           </DrawerBody>
 
           <DrawerFooter>Footer</DrawerFooter>
