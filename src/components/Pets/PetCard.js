@@ -16,7 +16,7 @@ const PetCard = () => {
       gridTemplateColumns="1fr 2fr"
       pos={[null, 'relative', null, 'static']}
       my={[3, 5, null, 0]}
-      p={['none', 1, null, 1]}
+      p={['none', 1, null, 0]}
       w={[null, '90%', '700px', '100%']}
       h={[null, '150px', '200px', '100%']}
       borderRadius="0.5rem"
