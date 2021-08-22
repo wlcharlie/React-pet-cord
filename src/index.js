@@ -10,11 +10,13 @@ import * as serviceWorker from './serviceWorker';
 import { findAccountAPI } from './api/auth';
 import { authActions } from './store/auth';
 
-findAccountAPI(store.getState().auth.token).then(data => {
-  if (data.ok) {
-    store.dispatch(authActions.login({ token: store.getState().auth.token }));
-  } else {
+findAccountAPI(localStorage.getItem('token')).then(data => {
+  if (!data || !data.res.ok || !data.userRes.ok) {
     store.dispatch(authActions.logout());
+  } else {
+    store.dispatch(
+      authActions.login({ token: localStorage.getItem('token'), ...data.user })
+    );
   }
 
   ReactDOM.render(
