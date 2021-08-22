@@ -78,7 +78,6 @@ const LoginDrawer = () => {
         setLoading(false);
         return;
       }
-      console.log(user);
       dispatch(authActions.login({ token: data.idToken, ...user }));
     }
     setLoading(false);
