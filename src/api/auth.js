@@ -33,3 +33,19 @@ export const loginAPI = async ({ email, password }) => {
     }
   );
 };
+
+export const findAccountAPI = async token => {
+  return await fetch(
+    'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=' +
+      process.env.REACT_APP_G_API,
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        idToken: token,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+};

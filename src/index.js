@@ -7,16 +7,27 @@ import store from './store/index.js';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  </StrictMode>,
-  document.getElementById('root')
-);
+import { findAccountAPI } from './api/auth';
+import { authActions } from './store/auth';
+
+findAccountAPI(store.getState().auth.token).then(data => {
+  if (data.ok) {
+    store.dispatch(authActions.login({ token: store.getState().auth.token }));
+  } else {
+    store.dispatch(authActions.logout());
+  }
+
+  ReactDOM.render(
+    <StrictMode>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </StrictMode>,
+    document.getElementById('root')
+  );
+});
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
