@@ -46,15 +46,13 @@ const LoginDrawer = () => {
       const { loginEmail, loginPassword } = loginData;
       const email = loginEmail.current.value;
       const password = loginPassword.current.value;
-      const res = await loginAPI({ email, password });
+      const { res, data, user } = await loginAPI({ email, password });
       if (!res.ok) {
-        setError(res.error.message);
+        setError(data.error.message);
         setLoading(false);
         return;
       }
-      const data = await res.json();
-      dispatch(authActions.login({ token: data.idToken }));
-      history.replace('/pets');
+      dispatch(authActions.login({ token: data.idToken, ...user }));
     }
 
     if (form === 'register') {
@@ -69,15 +67,22 @@ const LoginDrawer = () => {
         return;
       }
 
-      const res = await registerAPI({ email, password });
+      const { res, data, user } = await registerAPI({
+        email,
+        password,
+        username,
+      });
 
       if (!res.ok) {
-        setError(res.error.message);
+        setError(data.error.message);
         setLoading(false);
         return;
       }
+      console.log(user);
+      dispatch(authActions.login({ token: data.idToken, ...user }));
     }
     setLoading(false);
+    history.replace('/pets');
   };
 
   return (
