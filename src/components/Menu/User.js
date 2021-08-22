@@ -8,8 +8,12 @@ import {
   MenuGroup,
   MenuDivider,
 } from '@chakra-ui/react';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../store/auth';
 
 const User = () => {
+  const dispatch = useDispatch();
+
   return (
     <Menu>
       <MenuButton
@@ -30,7 +34,14 @@ const User = () => {
         <MenuDivider />
         <MenuGroup>
           <Flex justify="flex-end">
-            <Button colorScheme="red" variant="solid" mr={3}>
+            <Button
+              colorScheme="red"
+              variant="solid"
+              mr={3}
+              onClick={() => {
+                dispatch(authActions.logout());
+              }}
+            >
               Logout
             </Button>
           </Flex>
