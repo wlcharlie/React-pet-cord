@@ -123,6 +123,7 @@ const LoginDrawer = () => {
               )}
               <Button
                 isLoading={loading}
+                loadingText="just a sec..."
                 type="submit"
                 w="100%"
                 colorScheme="red"

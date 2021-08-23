@@ -8,41 +8,23 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Button,
-  Input,
   useDisclosure,
-  FormControl,
-  FormLabel,
-  VStack,
-  HStack,
-  Radio,
-  RadioGroup,
-  Select,
-  Textarea,
-  Image,
-  Divider,
+  Alert,
+  AlertIcon,
+  useToast,
 } from '@chakra-ui/react';
 import { Fragment, useRef, useState } from 'react';
 import { BsPlusCircleFill } from 'react-icons/bs';
-import { FaCamera } from 'react-icons/fa';
+
+import AddPetForm from './AddPetForm';
 
 const AddPetMenu = () => {
   const [typed, setTyped] = useState(false);
-  const [avatar, setAvatar] = useState(
-    'https://image.flaticon.com/icons/png/512/528/528101.png'
-  );
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
-  const avatarRef = useRef();
-
-  const imagePreview = e => {
-    if (!e.target.files.length) return;
-    setAvatar(URL.createObjectURL(e.target.files[0]));
-  };
-
-  const addHandler = e => {
-    e.preventDefault();
-    console.log('23');
-  };
+  const toast = useToast();
 
   const leaveConfirm = () => {
     if (typed) {
@@ -53,6 +35,31 @@ const AddPetMenu = () => {
     }
     setTyped(false);
     onClose();
+  };
+
+  const eventHandler = {
+    pending: () => {
+      setLoading(true);
+    },
+
+    success: () => {
+      setLoading(false);
+      setTyped(false);
+      onClose();
+      toast({
+        title: 'Success',
+        description: 'A new pet has joined!',
+        status: 'success',
+        duration: 6000,
+        position: 'bottom-right',
+        isClosable: true,
+      });
+    },
+
+    fail: () => {
+      setLoading(false);
+      setError(true);
+    },
   };
 
   return (
@@ -85,97 +92,39 @@ const AddPetMenu = () => {
         onClose={leaveConfirm}
         finalFocusRef={() => window}
         size="sm"
+        onChange={() => setTyped(true)}
       >
-        <form onSubmit={addHandler} onChange={() => setTyped(true)}>
-          <DrawerOverlay />
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerHeader>Adding a new friend?</DrawerHeader>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>Adding a new friend?</DrawerHeader>
 
-            <DrawerBody>
-              <VStack spacing="24px">
-                <FormControl id="avatar">
-                  <FormLabel>Avatar</FormLabel>
-                  <Input
-                    accept="image/*"
-                    type="file"
-                    d="none"
-                    onChange={imagePreview}
-                    ref={avatarRef}
-                  />
-                  <Box w="100px" h="100px" pos="relative">
-                    <Image
-                      pos="absolute"
-                      zIndex="99"
-                      bgSize="cover"
-                      bgImage={`url(${avatar})`}
-                      w="100%"
-                      h="100%"
-                      borderRadius="50%"
-                      pos="absolute"
-                      transition="0.2s"
-                      _hover={{
-                        filter: 'blur(2px) brightness(50%)',
-                        cursor: 'pointer',
-                        zIndex: '97',
-                      }}
-                      onClick={() => avatarRef.current.click()}
-                    />
-                    <Box
-                      color="rgba(255,255,255,0.6)"
-                      zIndex="98"
-                      pos="absolute"
-                      top="50%"
-                      left="50%"
-                      mt="-10px"
-                      ml="-10px"
-                    >
-                      <FaCamera size={20} />
-                    </Box>
-                  </Box>
-                </FormControl>
-                <FormControl id="name" isRequired>
-                  <FormLabel>Pet Name</FormLabel>
-                  <Input type="text" />
-                </FormControl>
-                <FormControl id="species" isRequired>
-                  <FormLabel>Type</FormLabel>
-                  <Select placeholder="Select option">
-                    <option value="dog">Dog</option>
-                    <option value="cat">Cat</option>
-                  </Select>
-                </FormControl>
-                <FormControl id="dob" isRequired>
-                  <FormLabel>Date of birth</FormLabel>
-                  <Input type="date" />
-                </FormControl>
-                <FormControl id="gender" isRequired>
-                  <FormLabel>Gender</FormLabel>
-                  <RadioGroup defaultValue="male">
-                    <HStack>
-                      <Radio value="male">Male</Radio>
-                      <Radio value="female">Female</Radio>
-                    </HStack>
-                  </RadioGroup>
-                </FormControl>
-                <Divider />
-                <FormControl id="note">
-                  <FormLabel>Note</FormLabel>
-                  <Textarea placeholder="Some note?" />
-                </FormControl>
-              </VStack>
-            </DrawerBody>
+          <DrawerBody>
+            <AddPetForm submit={eventHandler} />
+          </DrawerBody>
 
-            <DrawerFooter justifyContent="space-between">
-              <Button type="submit" colorScheme="blue">
-                Add
-              </Button>
-              <Button variant="outline" onClick={leaveConfirm}>
-                Cancel
-              </Button>
-            </DrawerFooter>
-          </DrawerContent>
-        </form>
+          {error && (
+            <Alert status="warning">
+              <AlertIcon />
+              Something gone wrong... Please try again!
+            </Alert>
+          )}
+
+          <DrawerFooter justifyContent="space-between">
+            <Button
+              isLoading={loading}
+              loadingText="working..."
+              type="submit"
+              colorScheme="blue"
+              form="newPetForm"
+            >
+              Add
+            </Button>
+            <Button variant="outline" onClick={leaveConfirm}>
+              Cancel
+            </Button>
+          </DrawerFooter>
+        </DrawerContent>
       </Drawer>
     </Fragment>
   );
