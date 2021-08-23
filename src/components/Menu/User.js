@@ -7,11 +7,13 @@ import {
   MenuItem,
   MenuGroup,
   MenuDivider,
+  Text,
 } from '@chakra-ui/react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth';
 
 const User = () => {
+  const user = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
   return (
@@ -21,14 +23,21 @@ const User = () => {
         as={Button}
         borderRadius="full"
         boxSize="50px"
-        bgImage="url(https://bit.ly/sage-adebayo)"
+        bgImage="url(https://image.flaticon.com/icons/png/512/1596/1596810.png)"
         bgPosition="center"
         bgSize="contain"
         _hover={{ bgColor: 'none' }}
         _active={{ bgColor: 'none' }}
       />
       <MenuList>
-        <MenuGroup title="Profile">
+        <Text ml={3} fontSize={20} fontWeight="bolder">
+          {user.name}
+        </Text>
+        <Text ml={3} fontSize={16} fontWeight="lighter">
+          {user.email}
+        </Text>
+        <MenuDivider />
+        <MenuGroup>
           <MenuItem>My Account</MenuItem>
         </MenuGroup>
         <MenuDivider />

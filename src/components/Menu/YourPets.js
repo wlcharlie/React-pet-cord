@@ -16,7 +16,7 @@ const YourPets = () => {
         rightIcon={<ChevronDownIcon />}
         d={['none', 'block']}
       >
-        Your Cats
+        Your Pets
       </MenuButton>
       <MenuList>
         <MenuItem minH="48px">
