@@ -6,7 +6,7 @@ import App from './App';
 import store from './store/index.js';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
-
+import './index.css';
 import { findAccountAPI } from './api/auth';
 import { authActions } from './store/auth';
 
