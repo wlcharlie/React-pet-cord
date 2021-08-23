@@ -22,5 +22,4 @@
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff",
-  "Content-Security-Policy": "default-src 'self';font-src fonts.gstatic.com;style-src 'self' fonts.googleapis.com"
 }
