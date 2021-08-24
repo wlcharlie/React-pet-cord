@@ -1,4 +1,4 @@
-import { Box, Skeleton, GridItem, VStack } from '@chakra-ui/react';
+import { Box, Skeleton, GridItem } from '@chakra-ui/react';
 import { Fragment } from 'react';
 
 const LoadingSkeleton = () => {

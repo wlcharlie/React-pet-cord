@@ -11,8 +11,6 @@ import {
   Textarea,
   Image,
   Divider,
-  Alert,
-  AlertIcon,
 } from '@chakra-ui/react';
 import { FaCamera } from 'react-icons/fa';
 import { useState, useRef, useReducer } from 'react';
@@ -56,7 +54,7 @@ const AddPetForm = props => {
   const addHandler = async e => {
     e.preventDefault();
     props.submit.pending();
-    const { res, data } = await addPet({
+    const { res } = await addPet({
       avatar: avatarRef.current.files[0],
       name,
       dob,

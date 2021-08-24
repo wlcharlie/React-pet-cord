@@ -78,7 +78,7 @@ const AddPetMenu = () => {
         transition="0.3s "
         onTransitionEnd={onOpen}
         _hover={{ cursor: 'pointer' }}
-        _focus={{
+        _active={{
           transform: 'scale(0)',
           right: '-100px',
         }}

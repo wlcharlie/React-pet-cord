@@ -47,7 +47,7 @@ const LoginDrawer = () => {
       const email = loginEmail.current.value;
       const password = loginPassword.current.value;
       const { res, data, user } = await loginAPI({ email, password });
-      if (!res.ok) {
+      if (!res.ok || !res) {
         setError(data.error.message);
         setLoading(false);
         return;

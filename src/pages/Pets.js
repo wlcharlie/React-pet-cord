@@ -15,13 +15,15 @@ const petReducer = (state, action) => {
 const Pets = () => {
   const UserId = useSelector(state => state.auth.id);
   const [pets, petDispatch] = useReducer(petReducer, null);
-  useEffect(async () => {
+
+  const getPetData = async () => {
     const { res, data } = await getPets(UserId);
     if (res.ok) {
       data.dob = toAge(data.dob);
       petDispatch({ data });
     }
-  }, []);
+  };
+  getPetData();
 
   return (
     <Fragment>
