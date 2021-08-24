@@ -26,3 +26,30 @@ export const getPets = async UserId => {
     return error;
   }
 };
+
+export const getPet = async ({ UserId, petId }) => {
+  try {
+    const res = await fetch(db + '/pets/' + UserId + '/' + petId);
+    const data = await res.json();
+    return { res, data };
+  } catch (error) {
+    return error;
+  }
+};
+
+export const deletePet = async ({ UserId, name, petId }) => {
+  try {
+    const res = await fetch(db + '/pets/' + petId, {
+      method: 'DELETE',
+      body: {
+        petId,
+        UserId,
+        name,
+      },
+    });
+    const data = await res.json();
+    return { res, data };
+  } catch (error) {
+    return error;
+  }
+};
