@@ -22,7 +22,7 @@ findAccountAPI(localStorage.getItem('token')).then(data => {
   ReactDOM.render(
     <StrictMode>
       <Provider store={store}>
-        <BrowserRouter basename="/React-pet-cord">
+        <BrowserRouter>
           <App />
         </BrowserRouter>
       </Provider>
