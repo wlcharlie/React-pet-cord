@@ -6,12 +6,14 @@ import {
   Flex,
   Button,
   Tag,
+  Link,
 } from '@chakra-ui/react';
+import { Link as RouteLink } from 'react-router-dom';
 import { FaCat, FaDog, FaHeart, FaPen } from 'react-icons/fa';
 import { toAge } from '../../utils/convertToAge';
 
 const PetCard = props => {
-  const { name, gender, dob, species, note, avatar } = props.data;
+  const { name, gender, dob, species, note, avatar, _id } = props.data;
   const age = toAge(dob);
   return (
     <Box
@@ -63,9 +65,15 @@ const PetCard = props => {
               <Button colorScheme="orange" mr={1} rightIcon={<FaHeart />}>
                 Record
               </Button>
-              <Button colorScheme="teal" rightIcon={<FaPen />}>
-                Edit
-              </Button>
+              <Link
+                as={RouteLink}
+                to={`/pets/${_id}`}
+                _hover={{ textDecoration: 'none' }}
+              >
+                <Button colorScheme="teal" rightIcon={<FaPen />}>
+                  Edit
+                </Button>
+              </Link>
             </Flex>
           </Flex>
         </Flex>
