@@ -1,6 +1,6 @@
 import { Fragment, lazy, Suspense } from 'react';
 
-import { Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import Loading from '../components/layouts/Loading';
 
@@ -13,6 +13,9 @@ const Index = () => {
   return (
     <Fragment>
       <Suspense fallback={<Loading />}>
+        <Route path="/" exact>
+          <Redirect to="/login" />
+        </Route>
         <Route path="/login" component={Login} />
         <PrivateRoute path="/home" component={Home} />
         <PrivateRoute path="/pets" component={Pets} />

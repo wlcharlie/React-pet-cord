@@ -2,7 +2,7 @@
   "name": "react-pet-cord",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://wlcharlie.github.io/React-pet-cord/",
+  "homepage": "https://wlcharlie.github.io/React-pet-cord",
   "dependencies": {
     "@chakra-ui/icons": "^1.0.15",
     "@chakra-ui/react": "^1.6.6",

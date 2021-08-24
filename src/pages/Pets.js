@@ -4,7 +4,7 @@ import Header from '../components/Menu/Header';
 import PetsContainer from '../components/layouts/PetsContainer';
 import PetCard from '../components/Pets/PetCard';
 import AddPetMenu from '../components/Pets/AddPetMenu';
-
+import { toAge } from '../utils/convertToAge';
 import { getPets } from '../api/pets';
 import PetCardLoading from '../components/layouts/PetCardLoading';
 
@@ -18,9 +18,10 @@ const Pets = () => {
   useEffect(async () => {
     const { res, data } = await getPets(UserId);
     if (res.ok) {
+      data.dob = toAge(data.dob);
       petDispatch({ data });
     }
-  });
+  }, []);
 
   return (
     <Fragment>
