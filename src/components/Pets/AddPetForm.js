@@ -16,7 +16,10 @@ import { FaCamera } from 'react-icons/fa';
 import { useState, useRef, useReducer } from 'react';
 import { useSelector } from 'react-redux';
 
+// import { petsAction } from '../../store/pets';
+
 import { addPet } from '../../api/pets';
+import { useHistory } from 'react-router';
 
 const initialData = {
   name: '',
@@ -31,7 +34,9 @@ const newPetReducer = (state, action) => {
 };
 
 const AddPetForm = props => {
+  const history = useHistory();
   const UserId = useSelector(state => state.auth.id);
+
   const avatarRef = useRef();
   const [avatar, setAvatar] = useState(
     'https://image.flaticon.com/icons/png/512/528/528101.png'
@@ -65,6 +70,8 @@ const AddPetForm = props => {
     });
     if (res.ok) {
       props.submit.success();
+      // dispatch(petsActions.update());
+      history.go(0);
     } else {
       props.submit.fail();
     }

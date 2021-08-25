@@ -92,8 +92,7 @@ const PetInfo = () => {
 
       <Box
         w="100%"
-        h={['200px', null, null, null, '250px', '300px']}
-        mt="2rem"
+        h={['250px', null, null, null, '250px', '300px']}
         bgColor="white"
         bgImage={`url(${pet.avatar})`}
         bgPosition="center"
@@ -101,7 +100,7 @@ const PetInfo = () => {
         pos="absolute"
         bottom="0"
       >
-        <Skeleton w="100%" h="300px" isLoaded={pet} />
+        <Skeleton w="100%" h="100%" isLoaded={pet} />
       </Box>
     </Fragment>
   );

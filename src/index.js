@@ -17,12 +17,15 @@ findAccountAPI(localStorage.getItem('token')).then(data => {
     store.dispatch(authActions.logout());
     render();
   } else {
-    store.dispatch(
-      authActions.login({ token: localStorage.getItem('token'), ...data.user })
-    );
     getPets(data.user._id).then(res => {
-      console.log(res.data);
       store.dispatch(petsActions.update(res.data));
+      store.dispatch(
+        authActions.login({
+          token: localStorage.getItem('token'),
+          ...data.user,
+        })
+      );
+
       render();
     });
   }

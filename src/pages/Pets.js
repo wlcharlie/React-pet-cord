@@ -7,13 +7,12 @@ import AddPetMenu from '../components/Pets/AddPetMenu';
 import PetCardLoading from '../components/layouts/PetCardLoading';
 
 const Pets = () => {
-  const UserId = useSelector(state => state.auth.id);
   const petData = useSelector(state => state.pets);
   const [pets, setPet] = useState(null);
 
   useEffect(() => {
     setPet(petData.map(e => <PetCard key={e._id} data={e} />));
-  }, []);
+  }, [petData]);
 
   return (
     <Fragment>
