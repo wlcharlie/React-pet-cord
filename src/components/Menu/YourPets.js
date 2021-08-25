@@ -6,13 +6,30 @@ import {
   Button,
   Image,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { getPets } from '../../api/pets';
+import { petsActions } from '../../store/pets';
 
 const Pets = () => {
+  const dispatch = useDispatch();
   const pets = useSelector(state => state.pets);
+  const UserId = useSelector(state => state.auth.id);
+
+  useEffect(() => {
+    const initPet = async () => {
+      const res = await getPets(UserId);
+      dispatch(petsActions.update(res.data));
+    };
+
+    initPet();
+
+    return () => {
+      dispatch(petsActions.clear());
+    };
+  }, []);
 
   return pets.map(e => (
     <MenuItem
@@ -51,4 +68,4 @@ const YourPets = () => {
   );
 };
 
-export default React.memo(YourPets);
+export default YourPets;

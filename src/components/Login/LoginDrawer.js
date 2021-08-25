@@ -81,7 +81,7 @@ const LoginDrawer = () => {
       dispatch(authActions.login({ token: data.idToken, ...user }));
     }
     setLoading(false);
-    history.replace('/pets');
+    history.replace('/home');
   };
 
   return (

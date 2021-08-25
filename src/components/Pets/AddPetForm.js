@@ -16,8 +16,6 @@ import { FaCamera } from 'react-icons/fa';
 import { useState, useRef, useReducer } from 'react';
 import { useSelector } from 'react-redux';
 
-// import { petsAction } from '../../store/pets';
-
 import { addPet } from '../../api/pets';
 import { useHistory } from 'react-router';
 
@@ -70,7 +68,6 @@ const AddPetForm = props => {
     });
     if (res.ok) {
       props.submit.success();
-      // dispatch(petsActions.update());
       history.go(0);
     } else {
       props.submit.fail();

@@ -7,6 +7,9 @@ const petsSlice = createSlice({
     update: (state, { payload }) => {
       return [...state, ...payload];
     },
+    clear: state => {
+      return [];
+    },
   },
 });
 

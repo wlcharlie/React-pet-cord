@@ -12,13 +12,12 @@ import { getPets } from './api/pets';
 import { authActions } from './store/auth';
 import { petsActions } from './store/pets';
 
-const init = async () => {
+const initToken = async () => {
+  if (!localStorage.getItem('token')) return render();
+
   const data = await findAccountAPI(localStorage.getItem('token'));
 
-  if (data && data.res.ok && data.userRes.ok) {
-    const res = await getPets(data.user._id);
-
-    store.dispatch(petsActions.update(res.data));
+  if (data.res.ok && data.userRes.ok) {
     store.dispatch(
       authActions.login({
         token: localStorage.getItem('token'),
@@ -44,7 +43,7 @@ const render = () => {
   );
 };
 
-init();
+initToken();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

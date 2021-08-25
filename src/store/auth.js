@@ -5,9 +5,9 @@ const authSlice = createSlice({
   initialState: {
     token: null,
     isLoggedIn: false,
-    name: '',
-    email: '',
-    id: '',
+    name: null,
+    email: null,
+    id: null,
   },
   reducers: {
     login: (state, { payload }) => {
