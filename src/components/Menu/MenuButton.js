@@ -6,7 +6,7 @@ const MenuButton = props => {
   const styles = {
     home: <MdHome size={20} />,
     pets: <MdPets size={20} />,
-    records: <MdFavorite size={20} />,
+    healths: <MdFavorite size={20} />,
   };
 
   return (

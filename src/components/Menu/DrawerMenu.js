@@ -40,7 +40,7 @@ const DrawerMenu = props => {
           <DrawerBody d="flex" flexDirection="column">
             <MenuButton styles="home">Home</MenuButton>
             <MenuButton styles="pets">Pets</MenuButton>
-            <MenuButton styles="records">Health Records</MenuButton>
+            <MenuButton styles="healths">Health Records</MenuButton>
           </DrawerBody>
 
           <DrawerFooter>Footer</DrawerFooter>
