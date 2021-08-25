@@ -12,24 +12,24 @@ import { getPets } from './api/pets';
 import { authActions } from './store/auth';
 import { petsActions } from './store/pets';
 
-findAccountAPI(localStorage.getItem('token')).then(data => {
-  if (!data || !data.res.ok || !data.userRes.ok) {
-    store.dispatch(authActions.logout());
-    render();
-  } else {
-    getPets(data.user._id).then(res => {
-      store.dispatch(petsActions.update(res.data));
-      store.dispatch(
-        authActions.login({
-          token: localStorage.getItem('token'),
-          ...data.user,
-        })
-      );
+const init = async () => {
+  const data = await findAccountAPI(localStorage.getItem('token'));
 
-      render();
-    });
+  if (data && data.res.ok && data.userRes.ok) {
+    const res = await getPets(data.user._id);
+
+    store.dispatch(petsActions.update(res.data));
+    store.dispatch(
+      authActions.login({
+        token: localStorage.getItem('token'),
+        ...data.user,
+      })
+    );
+  } else {
+    store.dispatch(authActions.logout());
   }
-});
+  render();
+};
 
 const render = () => {
   return ReactDOM.render(
@@ -43,6 +43,8 @@ const render = () => {
     document.getElementById('root')
   );
 };
+
+init();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

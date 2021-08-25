@@ -1,13 +1,14 @@
 import { Fragment } from 'react';
+import Overview from '../components/Healths/Overview';
 import Header from '../components/Menu/Header';
 
-const Records = () => {
+const Healths = () => {
   return (
     <Fragment>
       <Header />
-      <p> no thing at records page</p>
+      <Overview />
     </Fragment>
   );
 };
 
-export default Records;
+export default Healths;

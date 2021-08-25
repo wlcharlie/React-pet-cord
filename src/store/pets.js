@@ -5,7 +5,6 @@ const petsSlice = createSlice({
   initialState: [],
   reducers: {
     update: (state, { payload }) => {
-      console.log(payload);
       return [...state, ...payload];
     },
   },

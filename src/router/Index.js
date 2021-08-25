@@ -8,7 +8,7 @@ const Login = lazy(() => import('../pages/Login'));
 const Home = lazy(() => import('../pages/home'));
 const Pets = lazy(() => import('../pages/Pets'));
 const EditPets = lazy(() => import('../pages/EditPets'));
-const Records = lazy(() => import('../pages/Records'));
+const Healths = lazy(() => import('../pages/Healths'));
 
 const Index = () => {
   return (
@@ -22,7 +22,10 @@ const Index = () => {
           <PrivateRoute path="/home" component={Home} />
           <PrivateRoute path="/pets/:petId" component={EditPets} />
           <PrivateRoute path="/pets" component={Pets} />
-          <PrivateRoute path="/records" component={Records} />
+          <PrivateRoute path="/healths" component={Healths} />
+          <Route path="*">
+            <div>why are you here?</div>
+          </Route>
         </Switch>
       </Suspense>
     </Fragment>
