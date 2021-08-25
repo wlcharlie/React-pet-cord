@@ -37,13 +37,18 @@ const PetDetail = ({ pet, petId, UserId, switchHandler }) => {
       </Box>
       <Divider />
       <Flex h="33%" align="center" justify="space-around">
-        <Button w="100px" h="80px" colorScheme="green">
+        <Button w={['85px', '100px']} h="80px" colorScheme="green">
           <VStack>
             <FaPlus />
             <Text>Health</Text>
           </VStack>
         </Button>
-        <Button w="100px" h="80px" colorScheme="blue" onClick={switchHandler}>
+        <Button
+          w={['85px', '100px']}
+          h="80px"
+          colorScheme="blue"
+          onClick={switchHandler}
+        >
           <VStack>
             <FaPen />
             <Text>Edit Profile</Text>

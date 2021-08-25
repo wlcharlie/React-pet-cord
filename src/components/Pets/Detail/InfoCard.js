@@ -10,6 +10,7 @@ import {
   TabList,
   TabPanels,
   Link,
+  Skeleton,
 } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
 
@@ -58,46 +59,50 @@ const PetInfo = () => {
             <Tab>Info</Tab>
             <Tab>Health Chart</Tab>
           </TabList>
-          <TabPanels>
-            <TabPanel
-              w="100%"
-              h="350px"
-              boxShadow="base"
-              borderRadius="2xl"
-              bg="white"
-            >
-              {!edit && (
-                <PetDetail
-                  pet={pet}
-                  petId={petId}
-                  UserId={UserId}
-                  switchHandler={switchingHandler}
-                />
-              )}
-              {edit && (
-                <PetEditForm
-                  pet={pet}
-                  switchHandler={switchingHandler}
-                  getUpdate={getUpdate}
-                />
-              )}
-            </TabPanel>
-            <TabPanel>這裡會放健康圖表</TabPanel>
-          </TabPanels>
+          <Skeleton borderRadius="2xl" isLoaded={pet}>
+            <TabPanels>
+              <TabPanel
+                w="100%"
+                h="350px"
+                boxShadow="base"
+                borderRadius="2xl"
+                bg="white"
+              >
+                {!edit && (
+                  <PetDetail
+                    pet={pet}
+                    petId={petId}
+                    UserId={UserId}
+                    switchHandler={switchingHandler}
+                  />
+                )}
+                {edit && (
+                  <PetEditForm
+                    pet={pet}
+                    switchHandler={switchingHandler}
+                    getUpdate={getUpdate}
+                  />
+                )}
+              </TabPanel>
+              <TabPanel>這裡會放健康圖表</TabPanel>
+            </TabPanels>
+          </Skeleton>
         </Tabs>
       </Container>
 
       <Box
         w="100%"
-        h="300px"
+        h={['200px', null, null, null, '250px', '300px']}
         mt="2rem"
         bgColor="white"
         bgImage={`url(${pet.avatar})`}
         bgPosition="center"
-        bgSize="cover"
+        bgSize={['cover', null, null, null, 'contain']}
         pos="absolute"
         bottom="0"
-      />
+      >
+        <Skeleton w="100%" h="300px" isLoaded={pet} />
+      </Box>
     </Fragment>
   );
 };

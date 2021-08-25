@@ -109,11 +109,13 @@ const PetEditForm = ({ pet, switchHandler, getUpdate }) => {
             colorScheme="green"
             borderColor="white"
             boxShadow="0 0 0 3px white"
-            leftIcon={<FaCamera />}
             onClick={() => avatar.current.click()}
           >
             <Input type="file" name="avatar" d="none" ref={avatar} />
-            Change Avatar
+            <FaCamera />
+            <Text ml={3} d={['none', 'block']}>
+              Change Avatar
+            </Text>
           </Button>
         </Box>
         <Box pos="absolute" bottom="-20px" right="20px">

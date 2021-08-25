@@ -48,7 +48,7 @@ const DeleteModal = props => {
 
   return (
     <Fragment>
-      <Button onClick={onOpen} w="100px" h="80px" colorScheme="red">
+      <Button onClick={onOpen} w={['85px', '100px']} h="80px" colorScheme="red">
         <VStack>
           <FaRegFrownOpen />
           <Text>Delete</Text>
