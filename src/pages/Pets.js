@@ -24,6 +24,7 @@ const Pets = () => {
       }
     };
     getPetsData();
+    // eslint-disable-next-line
   }, []);
 
   return (

@@ -1,35 +1,23 @@
-import { Fragment, useEffect, useState, useRef, lazy } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
 import {
   Container,
   Box,
-  Text,
-  Divider,
-  Switch,
-  Tag,
-  Flex,
-  Input,
-  FormControl,
-  FormLabel,
-  Stack,
-  Button,
   TabPanel,
   Tabs,
   Tab,
   TabList,
   TabPanels,
-  VStack,
   Link,
 } from '@chakra-ui/react';
-import { FaPlus, FaPen, FaRegFrownOpen } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 
-import { deletePet, getPet } from '../../../api/pets';
+import { getPet } from '../../../api/pets';
+import { formatDate } from '../../../utils/convertToDate';
+
 import PetDetail from './PetDetail';
 import PetEditForm from './PetEditForm';
-
-let init = true;
 
 const PetInfo = () => {
   const history = useHistory();
@@ -42,23 +30,23 @@ const PetInfo = () => {
     setEdit(prev => !prev);
   };
 
-  useEffect(() => {
-    if (init) {
-      return (init = false);
-    }
-  }, [edit]);
+  const getUpdate = data => {
+    setPet(data);
+  };
 
   useEffect(() => {
     const getPetData = async () => {
       const { res, data } = await getPet({ UserId, petId });
       if (res.ok) {
-        setPet(data);
+        setPet({ ...data, dob: formatDate(new Date(data.dob * 1000)) });
       }
+      console.log(data);
     };
 
     getPetData();
+    // eslint-disable-next-line
   }, []);
-  console.log('looping');
+
   return (
     <Fragment>
       <Container w="100%" mt="2rem" mb={5}>
@@ -67,8 +55,8 @@ const PetInfo = () => {
       <Container>
         <Tabs variant="soft-rounded" pos="relative">
           <TabList mb={1}>
-            <Tab>One</Tab>
-            <Tab>Two</Tab>
+            <Tab>Info</Tab>
+            <Tab>Health Chart</Tab>
           </TabList>
           <TabPanels>
             <TabPanel
@@ -87,7 +75,11 @@ const PetInfo = () => {
                 />
               )}
               {edit && (
-                <PetEditForm pet={pet} switchHandler={switchingHandler} />
+                <PetEditForm
+                  pet={pet}
+                  switchHandler={switchingHandler}
+                  getUpdate={getUpdate}
+                />
               )}
             </TabPanel>
             <TabPanel>這裡會放健康圖表</TabPanel>

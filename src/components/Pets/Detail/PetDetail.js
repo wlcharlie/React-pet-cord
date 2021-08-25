@@ -1,27 +1,8 @@
-import {
-  Flex,
-  Box,
-  Text,
-  Divider,
-  Button,
-  VStack,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Tag,
-  useDisclosure,
-  useToast,
-  Input,
-} from '@chakra-ui/react';
-import { Fragment, useRef } from 'react';
-import { FaPlus, FaPen, FaRegFrownOpen } from 'react-icons/fa';
-import { useHistory } from 'react-router';
+import { Flex, Box, Text, Divider, Button, VStack } from '@chakra-ui/react';
+import { Fragment } from 'react';
+import { FaPlus, FaPen } from 'react-icons/fa';
+
 import DeleteModal from './DeleteModal';
-import { deletePet, getPet } from '../../../api/pets';
 
 const PetDetail = ({ pet, petId, UserId, switchHandler }) => {
   return (

@@ -37,6 +37,27 @@ export const getPet = async ({ UserId, petId }) => {
   }
 };
 
+export const updatePet = async ({ data, petId }) => {
+  try {
+    const formData = new FormData();
+    for (let i in data) {
+      formData.append(i, data[i]);
+    }
+    try {
+      const res = await fetch(db + '/pets/' + petId, {
+        method: 'PUT',
+        body: formData,
+      });
+      const data = await res.json();
+      return { res, data };
+    } catch (error) {
+      return error;
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
 export const deletePet = async ({ UserId, name, petId }) => {
   try {
     const res = await fetch(db + '/pets/' + petId, {
