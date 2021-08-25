@@ -8,18 +8,28 @@ import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 import { findAccountAPI } from './api/auth';
+import { getPets } from './api/pets';
 import { authActions } from './store/auth';
+import { petsActions } from './store/pets';
 
 findAccountAPI(localStorage.getItem('token')).then(data => {
   if (!data || !data.res.ok || !data.userRes.ok) {
     store.dispatch(authActions.logout());
+    render();
   } else {
     store.dispatch(
       authActions.login({ token: localStorage.getItem('token'), ...data.user })
     );
+    getPets(data.user._id).then(res => {
+      console.log(res.data);
+      store.dispatch(petsActions.update(res.data));
+      render();
+    });
   }
+});
 
-  ReactDOM.render(
+const render = () => {
+  return ReactDOM.render(
     <StrictMode>
       <Provider store={store}>
         <BrowserRouter>
@@ -29,7 +39,7 @@ findAccountAPI(localStorage.getItem('token')).then(data => {
     </StrictMode>,
     document.getElementById('root')
   );
-});
+};
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

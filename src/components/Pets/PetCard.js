@@ -15,6 +15,7 @@ import { toAge } from '../../utils/convertToAge';
 const PetCard = props => {
   const { name, gender, dob, species, note, avatar, _id } = props.data;
   const age = toAge(dob);
+
   return (
     <Box
       d="grid"

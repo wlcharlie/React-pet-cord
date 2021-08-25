@@ -6,7 +6,33 @@ import {
   Button,
   Image,
 } from '@chakra-ui/react';
+import React from 'react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
+import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
+const Pets = () => {
+  const pets = useSelector(state => state.pets);
+
+  return pets.map(e => (
+    <MenuItem
+      as={NavLink}
+      to={`/pets/${e._id}`}
+      activeStyle={{ display: 'none' }}
+      minH="40px"
+      key={e._id}
+    >
+      <Image
+        boxSize="2rem"
+        borderRadius="full"
+        src={e.avatar}
+        alt={e.name}
+        mr="12px"
+      />
+      <span>{e.name}</span>
+    </MenuItem>
+  ));
+};
 
 const YourPets = () => {
   return (
@@ -19,29 +45,10 @@ const YourPets = () => {
         Your Pets
       </MenuButton>
       <MenuList>
-        <MenuItem minH="48px">
-          <Image
-            boxSize="2rem"
-            borderRadius="full"
-            src="https://placekitten.com/100/100"
-            alt="Fluffybuns the destroyer"
-            mr="12px"
-          />
-          <span>Fluffybuns the Destroyer</span>
-        </MenuItem>
-        <MenuItem minH="40px">
-          <Image
-            boxSize="2rem"
-            borderRadius="full"
-            src="https://placekitten.com/120/120"
-            alt="Simon the pensive"
-            mr="12px"
-          />
-          <span>Simon the pensive</span>
-        </MenuItem>
+        <Pets />
       </MenuList>
     </Menu>
   );
 };
 
-export default YourPets;
+export default React.memo(YourPets);

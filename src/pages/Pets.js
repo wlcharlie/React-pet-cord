@@ -1,30 +1,18 @@
-import { Fragment, useEffect, useReducer } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Header from '../components/Menu/Header';
 import PetsContainer from '../components/layouts/PetsContainer';
 import PetCard from '../components/Pets/PetCard';
 import AddPetMenu from '../components/Pets/AddPetMenu';
-import { toAge } from '../utils/convertToAge';
-import { getPets } from '../api/pets';
 import PetCardLoading from '../components/layouts/PetCardLoading';
-
-const petReducer = (state, action) => {
-  return action.data.map(e => <PetCard key={e._id} data={e} />);
-};
 
 const Pets = () => {
   const UserId = useSelector(state => state.auth.id);
-  const [pets, petDispatch] = useReducer(petReducer, null);
+  const petData = useSelector(state => state.pets);
+  const [pets, setPet] = useState(null);
+
   useEffect(() => {
-    const getPetsData = async () => {
-      const { res, data } = await getPets(UserId);
-      if (res.ok) {
-        data.dob = toAge(data.dob);
-        petDispatch({ data });
-      }
-    };
-    getPetsData();
-    // eslint-disable-next-line
+    setPet(petData.map(e => <PetCard key={e._id} data={e} />));
   }, []);
 
   return (

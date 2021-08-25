@@ -45,7 +45,7 @@ const PetInfo = () => {
 
     getPetData();
     // eslint-disable-next-line
-  }, []);
+  }, [petId]);
 
   return (
     <Fragment>
