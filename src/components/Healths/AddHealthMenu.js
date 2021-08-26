@@ -18,7 +18,7 @@ import { BsPlusCircleFill } from 'react-icons/bs';
 
 import AddHealthForm from './AddHealthForm';
 
-const AddHealthMenu = () => {
+const AddHealthMenu = ({ refresh }) => {
   const [typed, setTyped] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -45,10 +45,11 @@ const AddHealthMenu = () => {
     success: () => {
       setLoading(false);
       setTyped(false);
+      refresh(true);
       onClose();
       toast({
         title: 'Success',
-        description: 'A new pet has joined!',
+        description: 'A Record has added',
         status: 'success',
         duration: 6000,
         position: 'bottom-right',
@@ -80,7 +81,7 @@ const AddHealthMenu = () => {
         _hover={{ cursor: 'pointer' }}
         _active={{
           transform: 'scale(0)',
-          right: '-100px',
+          bottom: '-100px',
         }}
         ref={btnRef}
       >
@@ -116,7 +117,7 @@ const AddHealthMenu = () => {
               loadingText="working..."
               type="submit"
               colorScheme="blue"
-              form="newPetForm"
+              form="newHealthForm"
             >
               Add
             </Button>

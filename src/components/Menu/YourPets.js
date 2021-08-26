@@ -13,22 +13,22 @@ import { NavLink } from 'react-router-dom';
 import { getPets } from '../../api/pets';
 import { petsActions } from '../../store/pets';
 
+let init = true;
+
 const Pets = () => {
   const dispatch = useDispatch();
   const pets = useSelector(state => state.pets);
   const UserId = useSelector(state => state.auth.id);
 
   useEffect(() => {
-    const initPet = async () => {
-      const res = await getPets(UserId);
-      dispatch(petsActions.update(res.data));
-    };
-
-    initPet();
-
-    return () => {
-      dispatch(petsActions.clear());
-    };
+    if (init) {
+      const initPet = async () => {
+        const res = await getPets(UserId);
+        dispatch(petsActions.update(res.data));
+      };
+      init = false;
+      initPet();
+    }
   }, []);
 
   return pets.map(e => (
