@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { getPetHealth } from '../../api/healths';
 import AddHealthMenu from './AddHealthMenu';
 import HealthRecord from './HealthRecord';
+import EditHealthForm from './EditHealthForm';
 
 const HealthInfoCard = () => {
   const { petId } = useParams();
@@ -13,6 +14,18 @@ const HealthInfoCard = () => {
   const [pet, setPet] = useState(null);
   const [records, setRecords] = useState(null);
   const [refresh, setRefresh] = useState(false);
+
+  const [editMode, setEditMode] = useState(false);
+  const [editData, setEditData] = useState(null);
+  const editModeHandler = data => {
+    if (editMode) {
+      setEditMode(false);
+      return setEditData(null);
+    }
+
+    setEditMode(true);
+    setEditData(data);
+  };
 
   useEffect(() => {
     const loadingView = async () => {
@@ -50,8 +63,9 @@ const HealthInfoCard = () => {
             h="100%"
             templateColumns={['1fr', null, '0.3fr 0.7fr']}
             templateRows={['0.4fr 0.6fr', null, '1fr']}
+            pos="relative"
           >
-            {loaded ? (
+            {loaded && (
               <Box
                 w="100%"
                 h="100%"
@@ -63,9 +77,8 @@ const HealthInfoCard = () => {
                 bgSize="cover"
                 bgPosition="center"
               />
-            ) : (
-              <Skeleton w="100%" h="100%" />
             )}
+            {!loaded && <Skeleton w="100%" h="100%" />}
             <Box w="100%" h="100%" p={2} overflowY="auto">
               {loaded && (
                 <Text fontSize="20px" fontWeight="bolder">
@@ -73,18 +86,32 @@ const HealthInfoCard = () => {
                 </Text>
               )}
               {!loaded && <Skeleton h="20px" />}
-              <Accordion allowMultiple>
+              <Accordion allowMultiple d={editMode ? 'none' : ''}>
                 {!loaded && <Skeleton h="500px" my={2} />}
                 {loaded &&
                   records.map(e => (
-                    <HealthRecord data={e} key={e._id} refresh={setRefresh} />
+                    <HealthRecord
+                      data={e}
+                      key={e._id}
+                      refresh={setRefresh}
+                      editModeHandler={editModeHandler}
+                    />
                   ))}
               </Accordion>
+              {editMode && (
+                <EditHealthForm
+                  data={editData}
+                  refresh={setRefresh}
+                  editModeHandler={editModeHandler}
+                />
+              )}
             </Box>
           </Grid>
         </Box>
       </Box>
-      <AddHealthMenu refresh={setRefresh} />
+      <Box d={editMode ? 'none' : ''}>
+        <AddHealthMenu refresh={setRefresh} />
+      </Box>
     </Fragment>
   );
 };

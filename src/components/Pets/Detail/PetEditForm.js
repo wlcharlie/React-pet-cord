@@ -21,19 +21,26 @@ const PetEditForm = ({ pet, switchHandler, getUpdate }) => {
   });
 
   const editHandler = e => {
-    const preview = URL.createObjectURL(e.target.files[0]);
-    setPetData(prev => {
-      return { ...prev, [e.target.name]: e.target.value, avatar: preview };
-    });
-    getUpdate(prev => {
-      return { ...prev, avatar: preview };
-    });
+    if (e.target.name === 'avatar') {
+      const preview = URL.createObjectURL(e.target.files[0]);
+      setPetData(prev => {
+        return { ...prev, avatar: preview };
+      });
+      getUpdate(prev => {
+        return { ...prev, avatar: preview };
+      });
+    } else {
+      setPetData(prev => {
+        return { ...prev, [e.target.name]: e.target.value };
+      });
+    }
   };
-
+  console.log(petData);
   const updateInfo = async e => {
     e.preventDefault();
     const updateData = {
-      avatar: avatar.current.files[0],
+      name: petData.name,
+      avatar: avatar.current.files[0] || petData.avatar,
       dob: petData.dob,
       gender: petData.gender,
       species: petData.species,

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useToast } from '@chakra-ui/toast';
 
-const useFormEvent = ({ refresh, onClose }) => {
+const useDrawerFormEvent = ({ refresh, onClose }) => {
   const [typed, setTyped] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -56,4 +56,4 @@ const useFormEvent = ({ refresh, onClose }) => {
   };
 };
 
-export default useFormEvent;
+export default useDrawerFormEvent;

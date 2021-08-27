@@ -17,7 +17,7 @@ import { deletePetHealth } from '../../api/healths';
 import { formatDate } from '../../utils/convertToDate';
 import HealthImagePreview from './HealthImagePreview';
 
-const HealthRecord = ({ data, refresh }) => {
+const HealthRecord = ({ data, refresh, editModeHandler }) => {
   const deleteHandler = async () => {
     const { res } = await deletePetHealth({
       PetId: data.PetId._id,
@@ -93,7 +93,7 @@ const HealthRecord = ({ data, refresh }) => {
             <HealthImagePreview image={data.image} />
           </Flex>
           <GridItem colStart={['2', 'unset']} w="100%" h="100%">
-            <Button colorScheme="blue">
+            <Button colorScheme="blue" onClick={() => editModeHandler(data)}>
               <FaEdit />
             </Button>
           </GridItem>
