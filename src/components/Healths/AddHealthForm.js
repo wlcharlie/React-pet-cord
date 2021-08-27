@@ -40,7 +40,6 @@ const newHealthReducer = (state, action) => {
 };
 
 const AddHealthForm = props => {
-  const history = useHistory();
   const { petId: PetId } = useParams();
   const imageRef = useRef();
   const [image, setImage] = useState(
@@ -56,6 +55,7 @@ const AddHealthForm = props => {
   };
 
   const changeHandler = e => {
+    props.submit.typing();
     newHealthDispatch({ type: e.target.name, value: e.target.value });
   };
 
@@ -74,6 +74,7 @@ const AddHealthForm = props => {
       props.submit.fail();
     }
   };
+
   return (
     <form
       onSubmit={addHandler}
