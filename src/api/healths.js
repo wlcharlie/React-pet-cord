@@ -29,14 +29,14 @@ export const getPetHealth = async PetId => {
   }
 };
 
-export const updatePetHealth = async ({ PetId, record }) => {
+export const updatePetHealth = async ({ PetId, HealthId, record }) => {
   const formData = new FormData();
   for (let i in record) {
     formData.append(i, record[i]);
   }
   try {
-    const res = await fetch(db + '/healths/' + PetId, {
-      method: 'POST',
+    const res = await fetch(db + '/healths/' + PetId + '/' + HealthId, {
+      method: 'PUT',
       body: formData,
     });
     const data = await res.json();
