@@ -1,5 +1,5 @@
-import { Box, Grid, Text, Flex } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Box, Grid, Text, Flex, Link } from '@chakra-ui/react';
+import { Link as RouteLink } from 'react-router-dom';
 import GuideButton from './GuideButton';
 
 const Home = () => {
@@ -9,23 +9,25 @@ const Home = () => {
         <Flex
           w="100%"
           h="100%"
-          justify="space-between"
+          justify="center"
           align="center"
           direction={['column', null, null, null, null]}
         >
-          <Link to="/pets">
+          <Link as={RouteLink} w="100%" to="/pets">
             <GuideButton data="pets" />
           </Link>
-          <Link to="/healths">
+          <Link as={RouteLink} w="100%" to="/healths">
             <GuideButton data="healths" />
           </Link>
-          <a
+          <Box
+            as="a"
+            w="100%"
             rel="nooppener noreferrer"
             target="_blank"
             href="https://wlcharlie.github.io/"
           >
             <GuideButton data="me" />
-          </a>
+          </Box>
         </Flex>
         <Text mt={5} fontSize="40px" textAlign="center" color="white">
           Welcome To PetCord!

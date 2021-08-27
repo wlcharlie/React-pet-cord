@@ -27,7 +27,7 @@ const GuideButton = props => {
   return (
     <Flex
       m={2}
-      w={['100%', null, null, null, '400px']}
+      w={['100%', null, null, null, null]}
       h="120px"
       bgColor="whiteAlpha.900"
       boxShadow="base"
