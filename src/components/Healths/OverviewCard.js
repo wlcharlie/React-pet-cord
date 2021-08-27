@@ -45,7 +45,11 @@ const OverviewCard = ({ data }) => {
             w="100%"
             h="100%"
             borderBottomRightRadius="50rem"
-            bgImage={`url(${data.avatar})`}
+            bgImage={`url(${
+              data.avatar === 'undefined'
+                ? 'https://image.flaticon.com/icons/png/512/4388/4388652.png'
+                : data.avatar
+            })`}
             bgRepeat="no-repeat"
             bgSize="cover"
             bgPosition="center"

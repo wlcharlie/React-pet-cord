@@ -33,7 +33,11 @@ const PetCard = props => {
         pos={[null, 'absolute', null, 'static']}
         bottom={[null, '20px', null]}
         left={[null, '-20px', null]}
-        bgImage={`url(${avatar})`}
+        bgImage={`url(${
+          avatar === 'undefined'
+            ? 'https://image.flaticon.com/icons/png/512/4388/4388652.png'
+            : avatar
+        })`}
         borderLeftRadius={['0.5rem', '0']}
         borderRadius={[null, '0.5rem', null, '0.5rem 0 0 0.5rem']}
         borderWidth={['none', '5px', null, 0]}
@@ -59,11 +63,6 @@ const PetCard = props => {
           </Flex>
           <Divider />
           <Flex direction="column" grow={2} justify="center" mt={1}>
-            <Box>
-              <Tag size="sm" variant="outline" colorScheme="orange">
-                Latest Record: 09/18
-              </Tag>
-            </Box>
             <Flex align="center">
               <Link
                 as={RouteLink}
@@ -75,9 +74,16 @@ const PetCard = props => {
                   Info
                 </Button>
               </Link>
-              <Button colorScheme="orange" rightIcon={<FaHeart />}>
-                Record
-              </Button>
+              <Link
+                as={RouteLink}
+                to={`/healths/${_id}`}
+                _hover={{ textDecoration: 'none' }}
+                mr={1}
+              >
+                <Button colorScheme="orange" rightIcon={<FaHeart />}>
+                  Record
+                </Button>
+              </Link>
             </Flex>
           </Flex>
         </Flex>

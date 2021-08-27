@@ -1,6 +1,7 @@
 import { Flex, Box, Text, Divider, Button, VStack } from '@chakra-ui/react';
 import { Fragment } from 'react';
 import { FaPlus, FaPen } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 import DeleteModal from './DeleteModal';
 
@@ -37,12 +38,14 @@ const PetDetail = ({ pet, petId, UserId, switchHandler }) => {
       </Box>
       <Divider />
       <Flex h="33%" align="center" justify="space-around">
-        <Button w={['85px', '100px']} h="80px" colorScheme="green">
-          <VStack>
-            <FaPlus />
-            <Text>Health</Text>
-          </VStack>
-        </Button>
+        <Link to={`/healths/${pet._id}`}>
+          <Button w={['85px', '100px']} h="80px" colorScheme="green">
+            <VStack>
+              <FaPlus />
+              <Text>Health</Text>
+            </VStack>
+          </Button>
+        </Link>
         <Button
           w={['85px', '100px']}
           h="80px"

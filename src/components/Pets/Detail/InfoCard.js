@@ -56,7 +56,7 @@ const PetInfo = () => {
         <Tabs variant="soft-rounded" pos="relative">
           <TabList mb={1}>
             <Tab>Info</Tab>
-            <Tab>Health Chart</Tab>
+            <Tab>Something</Tab>
           </TabList>
           <Skeleton borderRadius="2xl" isLoaded={pet}>
             <TabPanels>
@@ -83,7 +83,7 @@ const PetInfo = () => {
                   />
                 )}
               </TabPanel>
-              <TabPanel>這裡會放健康圖表</TabPanel>
+              <TabPanel>這裡還不知道可以放什麼</TabPanel>
             </TabPanels>
           </Skeleton>
         </Tabs>

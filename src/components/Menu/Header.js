@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { Link } from 'react-router-dom';
 import { Text, Flex, Center, Spacer } from '@chakra-ui/react';
 import { MdPets } from 'react-icons/md';
 
@@ -22,12 +23,14 @@ const Header = () => {
         <DrawerMenu />
       </Center>
       <Center>
-        <Flex align="center">
-          <MdPets size={24} />
-          <Text ml={1} fontSize={24}>
-            PetCord
-          </Text>
-        </Flex>
+        <Link to="/home">
+          <Flex align="center">
+            <MdPets size={24} />
+            <Text ml={1} fontSize={24}>
+              PetCord
+            </Text>
+          </Flex>
+        </Link>
       </Center>
       <Spacer />
       <Center>

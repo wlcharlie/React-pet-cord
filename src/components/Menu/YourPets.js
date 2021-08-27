@@ -30,7 +30,7 @@ const Pets = () => {
       initPet();
     }
   }, []);
-
+  console.log(pets[2]);
   return pets.map(e => (
     <MenuItem
       as={NavLink}
@@ -42,7 +42,11 @@ const Pets = () => {
       <Image
         boxSize="2rem"
         borderRadius="full"
-        src={e.avatar}
+        src={
+          e.avatar === 'undefined'
+            ? 'https://image.flaticon.com/icons/png/512/4388/4388652.png'
+            : e.avatar
+        }
         alt={e.name}
         mr="12px"
       />

@@ -1,13 +1,14 @@
 import { Text, Box, Grid, Accordion, Skeleton } from '@chakra-ui/react';
 import { Fragment, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import { getPetHealth } from '../../api/healths';
 import AddHealthMenu from './AddHealthMenu';
 import HealthRecord from './HealthRecord';
 import EditHealthForm from './EditHealthForm';
 
 const HealthInfoCard = () => {
+  const history = useHistory();
   const { petId } = useParams();
   const pets = useSelector(state => state.pets);
   const [loaded, setLoaded] = useState(false);
@@ -51,6 +52,7 @@ const HealthInfoCard = () => {
   return (
     <Fragment>
       <Box p="3" w="100%">
+        <Link onClick={history.goBack}>{'< Go Back'}</Link>
         <Box
           w="100%"
           h="80vh"
