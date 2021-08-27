@@ -12,6 +12,7 @@ const Pets = lazy(() => import('../pages/Pets'));
 const EditPets = lazy(() => import('../pages/EditPets'));
 const Healths = lazy(() => import('../pages/Healths'));
 const Health = lazy(() => import('../pages/Health'));
+const User = lazy(() => import('../pages/User'));
 
 const Index = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
@@ -30,6 +31,7 @@ const Index = () => {
           <PrivateRoute path="/pets" component={Pets} />
           <PrivateRoute path="/healths/:petId" component={Health} />
           <PrivateRoute path="/healths" component={Healths} />
+          <PrivateRoute path="/user" component={User} />
 
           <Route path="*">
             <div>why are you here?</div>

@@ -9,6 +9,7 @@ import {
   MenuDivider,
   Text,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth';
 
@@ -38,7 +39,9 @@ const User = () => {
         </Text>
         <MenuDivider />
         <MenuGroup>
-          <MenuItem>My Account</MenuItem>
+          <MenuItem>
+            <Link to="/user">My Account</Link>
+          </MenuItem>
         </MenuGroup>
         <MenuDivider />
         <MenuGroup>
