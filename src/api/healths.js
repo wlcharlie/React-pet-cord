@@ -57,3 +57,13 @@ export const deletePetHealth = async ({ PetId, HealthId }) => {
     throw new Error(error);
   }
 };
+
+export const overviewHealth = async () => {
+  try {
+    const res = await fetch(db + '/healths');
+    const data = await res.json();
+    return { res, data };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
