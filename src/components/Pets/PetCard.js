@@ -41,6 +41,7 @@ const PetCard = props => {
         boxSize={['120px', '150px']}
         bgPosition="center"
         bgSize="cover"
+        boxShadow="base"
       />
       <GridItem mx={1} colStart={2} pos="relative">
         <Flex direction="column" h="100%">

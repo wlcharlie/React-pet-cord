@@ -15,7 +15,6 @@ const HealthInfoCard = () => {
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
-    console.log(refresh);
     const loadingView = async () => {
       const { res, data } = await getPetHealth(petId);
       setRecords(data);
@@ -39,7 +38,13 @@ const HealthInfoCard = () => {
   return (
     <Fragment>
       <Box p="3" w="100%">
-        <Box w="100%" h="80vh" borderRadius="1rem" bgColor="white">
+        <Box
+          w="100%"
+          h="80vh"
+          borderRadius="1rem"
+          bgColor="white"
+          boxShadow="base"
+        >
           <Grid
             w="100%"
             h="100%"
@@ -61,17 +66,19 @@ const HealthInfoCard = () => {
             ) : (
               <Skeleton w="100%" h="100%" />
             )}
-            <Box w="100%" h="100%" p={2}>
+            <Box w="100%" h="100%" p={2} overflowY="auto">
               {loaded && (
                 <Text fontSize="20px" fontWeight="bolder">
                   {pet.name}'s Health Records
                 </Text>
               )}
               {!loaded && <Skeleton h="20px" />}
-              <Accordion>
+              <Accordion allowMultiple>
                 {!loaded && <Skeleton h="500px" my={2} />}
                 {loaded &&
-                  records.map(e => <HealthRecord data={e} key={e._id} />)}
+                  records.map(e => (
+                    <HealthRecord data={e} key={e._id} refresh={setRefresh} />
+                  ))}
               </Accordion>
             </Box>
           </Grid>

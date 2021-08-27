@@ -30,7 +30,7 @@ const useFormEvent = ({ refresh, onClose }) => {
     success: () => {
       setLoading(false);
       setTyped(false);
-      refresh(true);
+      refresh(prev => !prev);
       onClose();
       toast({
         title: 'Success',

@@ -12,11 +12,22 @@ import {
   HStack,
   Divider,
 } from '@chakra-ui/react';
-import { FaImage, FaEdit, FaTimes } from 'react-icons/fa';
+import { FaEdit, FaTimes } from 'react-icons/fa';
+import { deletePetHealth } from '../../api/healths';
 import { formatDate } from '../../utils/convertToDate';
+import HealthImagePreview from './HealthImagePreview';
 
-const HealthRecord = ({ data }) => {
-  console.log('loop?');
+const HealthRecord = ({ data, refresh }) => {
+  const deleteHandler = async () => {
+    const { res } = await deletePetHealth({
+      PetId: data.PetId._id,
+      HealthId: data._id,
+    });
+    if (res.ok) {
+      refresh(prev => !prev);
+    }
+  };
+
   return (
     <AccordionItem>
       <h2>
@@ -36,7 +47,7 @@ const HealthRecord = ({ data }) => {
         <Grid
           w="100%"
           mt={1}
-          templateColumns={['1fr 1fr 1fr 1fr 1fr 1fr', 'repeat(8,1fr)']}
+          templateColumns={['1fr 1fr 1fr', 'repeat(8,1fr)']}
         >
           <Flex w="100%" h="100%" d="column">
             <Text color="gray" fontSize={12}>
@@ -78,15 +89,16 @@ const HealthRecord = ({ data }) => {
             <Text color="gray" fontSize={12}>
               Image
             </Text>
-            <FaImage />
+
+            <HealthImagePreview image={data.image} />
           </Flex>
-          <GridItem colStart={['5', 'unset']} w="100%" h="100%">
+          <GridItem colStart={['2', 'unset']} w="100%" h="100%">
             <Button colorScheme="blue">
               <FaEdit />
             </Button>
           </GridItem>
           <GridItem>
-            <Button variant="outline" colorScheme="red">
+            <Button variant="outline" colorScheme="red" onClick={deleteHandler}>
               <FaTimes />
             </Button>
           </GridItem>

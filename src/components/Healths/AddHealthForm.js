@@ -64,7 +64,16 @@ const AddHealthForm = props => {
     props.submit.pending();
     const info = {
       PetId,
-      record: { date, weight, water, food, med, poo, other },
+      record: {
+        date,
+        weight,
+        water,
+        food,
+        med,
+        poo,
+        other,
+        image: imageRef.current.files[0],
+      },
     };
 
     try {

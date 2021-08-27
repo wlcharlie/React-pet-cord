@@ -28,3 +28,32 @@ export const getPetHealth = async PetId => {
     throw new Error(error);
   }
 };
+
+export const updatePetHealth = async ({ PetId, record }) => {
+  const formData = new FormData();
+  for (let i in record) {
+    formData.append(i, record[i]);
+  }
+  try {
+    const res = await fetch(db + '/healths/' + PetId, {
+      method: 'POST',
+      body: formData,
+    });
+    const data = await res.json();
+    return { res, data };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const deletePetHealth = async ({ PetId, HealthId }) => {
+  try {
+    const res = await fetch(db + '/healths/' + PetId + '/' + HealthId, {
+      method: 'DELETE',
+    });
+    const data = res.json();
+    return { res, data };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
