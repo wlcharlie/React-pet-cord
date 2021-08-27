@@ -30,7 +30,7 @@ const Pets = () => {
       initPet();
     }
   }, []);
-  console.log(pets[2]);
+
   return pets.map(e => (
     <MenuItem
       as={NavLink}

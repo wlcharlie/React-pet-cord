@@ -1,13 +1,13 @@
 import { Fragment } from 'react';
+import Home from '../components/Home/Home';
 import Header from '../components/Menu/Header';
 
-const Home = () => {
+const HomePage = () => {
   return (
     <Fragment>
-      {/* <Header /> */}
-      <p> no thing at home page</p>
+      <Home />
     </Fragment>
   );
 };
 
-export default Home;
+export default HomePage;

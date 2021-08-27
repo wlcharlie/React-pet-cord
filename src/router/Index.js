@@ -7,7 +7,7 @@ import Header from '../components/Menu/Header';
 import { useSelector } from 'react-redux';
 
 const Login = lazy(() => import('../pages/Login'));
-const Home = lazy(() => import('../pages/home'));
+const HomePage = lazy(() => import('../pages/HomePage'));
 const Pets = lazy(() => import('../pages/Pets'));
 const EditPets = lazy(() => import('../pages/EditPets'));
 const Healths = lazy(() => import('../pages/Healths'));
@@ -26,7 +26,7 @@ const Index = () => {
             <Redirect to="/login" />
           </Route>
           <Route path="/login" component={Login} />
-          <PrivateRoute path="/home" component={Home} />
+          <PrivateRoute path="/home" component={HomePage} />
           <PrivateRoute path="/pets/:petId" component={EditPets} />
           <PrivateRoute path="/pets" component={Pets} />
           <PrivateRoute path="/healths/:petId" component={Health} />
