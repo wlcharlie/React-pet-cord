@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Text, Flex, Center, Spacer } from '@chakra-ui/react';
 import { MdPets } from 'react-icons/md';
 
@@ -39,4 +40,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

@@ -5,7 +5,7 @@ import PetInfo from '../components/Pets/Detail/InfoCard';
 const EditPets = () => {
   return (
     <Fragment>
-      <Header />
+      {/* <Header /> */}
       <PetInfo />
     </Fragment>
   );

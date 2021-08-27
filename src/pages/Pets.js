@@ -16,7 +16,7 @@ const Pets = () => {
 
   return (
     <Fragment>
-      <Header />
+      {/* <Header /> */}
       <PetsContainer>
         {!pets && <PetCardLoading />}
         {pets && pets}
