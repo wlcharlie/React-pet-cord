@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useToast } from '@chakra-ui/toast';
 
-const useDrawerFormEvent = ({ refresh, onClose }) => {
+const useFormEvent = ({ refresh, onClose }) => {
   const [typed, setTyped] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -24,6 +24,7 @@ const useDrawerFormEvent = ({ refresh, onClose }) => {
     },
 
     pending: () => {
+      setError(false);
       setLoading(true);
     },
 
@@ -53,7 +54,8 @@ const useDrawerFormEvent = ({ refresh, onClose }) => {
     leaveConfirm,
     loading,
     error,
+    setError,
   };
 };
 
-export default useDrawerFormEvent;
+export default useFormEvent;

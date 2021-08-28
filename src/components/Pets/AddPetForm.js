@@ -46,7 +46,6 @@ const AddPetForm = props => {
 
   const imagePreview = e => {
     if (!e.target.files.length) return;
-    console.log(e.target.files);
     setAvatar(URL.createObjectURL(e.target.files[0]));
   };
 

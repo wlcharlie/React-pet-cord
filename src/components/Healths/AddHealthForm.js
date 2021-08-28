@@ -6,21 +6,17 @@ import {
   Textarea,
   Image,
   Checkbox,
-  Stack,
   InputRightAddon,
   InputGroup,
   Grid,
   GridItem,
-  CheckboxGroup,
   HStack,
 } from '@chakra-ui/react';
-import { FaCamera } from 'react-icons/fa';
-import { useState, useRef, useReducer } from 'react';
-import { useSelector } from 'react-redux';
 
-import { addNewHealth } from '../../api/healths';
-import { useHistory } from 'react-router';
+import { useState, useRef, useReducer } from 'react';
 import { useParams } from 'react-router-dom';
+import { addNewHealth } from '../../api/healths';
+import { FaCamera } from 'react-icons/fa';
 
 const initialData = {
   date: null,

@@ -26,7 +26,7 @@ const data = {
 const GuideButton = props => {
   return (
     <Flex
-      m={2}
+      my={3}
       w={['100%', null, null, null, null]}
       h="120px"
       bgColor="whiteAlpha.900"
@@ -41,7 +41,6 @@ const GuideButton = props => {
       <Grid w="100%" h="100%" templateColumns="0.2fr 0.8fr">
         <Box
           w="100%"
-          h="100%"
           borderLeftRadius="1rem"
           bgSize="cover"
           bgPosition="center"

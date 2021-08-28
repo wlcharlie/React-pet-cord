@@ -24,7 +24,7 @@ const User = () => {
         as={Button}
         borderRadius="full"
         boxSize="50px"
-        bgImage="url(https://image.flaticon.com/icons/png/512/1596/1596810.png)"
+        bgImage={`url(${user.avatar})`}
         bgPosition="center"
         bgSize="contain"
         _hover={{ bgColor: 'none' }}
@@ -39,8 +39,8 @@ const User = () => {
         </Text>
         <MenuDivider />
         <MenuGroup>
-          <MenuItem>
-            <Link to="/user">My Account</Link>
+          <MenuItem as={Link} to="/user">
+            My Account
           </MenuItem>
         </MenuGroup>
         <MenuDivider />
