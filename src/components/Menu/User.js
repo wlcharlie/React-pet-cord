@@ -12,6 +12,7 @@ import {
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth';
+import { petsActions } from '../../store/pets';
 
 const User = () => {
   const user = useSelector(state => state.auth);
@@ -52,6 +53,7 @@ const User = () => {
               mr={3}
               onClick={() => {
                 dispatch(authActions.logout());
+                dispatch(petsActions.clear());
               }}
             >
               Logout

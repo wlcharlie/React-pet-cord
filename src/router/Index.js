@@ -1,10 +1,10 @@
 import { Fragment, lazy, Suspense } from 'react';
-
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import Loading from '../components/layouts/Loading';
 import Header from '../components/Menu/Header';
 import { useSelector } from 'react-redux';
+import Lost from '../pages/Lost';
 
 const Login = lazy(() => import('../pages/Login'));
 const HomePage = lazy(() => import('../pages/HomePage'));
@@ -32,10 +32,7 @@ const Index = () => {
           <PrivateRoute path="/healths/:petId" component={Health} />
           <PrivateRoute path="/healths" component={Healths} />
           <PrivateRoute path="/user" component={User} />
-
-          <Route path="*">
-            <div>why are you here?</div>
-          </Route>
+          <Route path="*" component={Lost} />
         </Switch>
       </Suspense>
     </Fragment>

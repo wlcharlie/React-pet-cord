@@ -17,11 +17,13 @@ import {
 import { Fragment, useRef } from 'react';
 import { FaRegFrownOpen } from 'react-icons/fa';
 import { useHistory } from 'react-router';
-
 import { deletePet } from '../../../api/pets';
+import { useDispatch } from 'react-redux';
+import { petsActions } from '../../../store/pets';
 
 const DeleteModal = props => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const toast = useToast();
   const check = useRef();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -34,7 +36,8 @@ const DeleteModal = props => {
         name: check.current.value,
       });
       if (res.ok) {
-        history.replace('/pets');
+        dispatch(petsActions.deleted({ id: props.petId }));
+        history.push('/pets');
         toast({
           title: 'Deleted',
           description: `Bye, ${props.name}`,

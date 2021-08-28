@@ -10,6 +10,7 @@ import {
   TabList,
   TabPanels,
   Skeleton,
+  useToast,
 } from '@chakra-ui/react';
 
 import { getPet } from '../../../api/pets';
@@ -18,14 +19,29 @@ import { formatDate } from '../../../utils/convertToDate';
 import PetDetail from './PetDetail';
 import PetEditForm from './PetEditForm';
 import BackLink from '../../layouts/BackLink';
+import { useHistory } from 'react-router-dom';
 
 const defaultImage = 'https://image.flaticon.com/icons/png/512/528/528101.png';
 
 const PetInfo = () => {
+  const toast = useToast();
+  const history = useHistory();
   const { petId } = useParams();
+  const pets = useSelector(state => state.pets);
   const UserId = useSelector(state => state.auth.id);
   const [pet, setPet] = useState(false);
   const [edit, setEdit] = useState(false);
+
+  if (!pets.find(e => e._id === petId)) {
+    history.replace('/pets');
+    toast({
+      title: 'No found',
+      description: 'Sorry, can not found the page your are going to',
+      status: 'error',
+      duration: 8000,
+      isClosable: true,
+    });
+  }
 
   const switchingHandler = () => {
     setEdit(prev => !prev);
@@ -41,6 +57,7 @@ const PetInfo = () => {
       if (res.ok) {
         setPet({ ...data, dob: formatDate(new Date(data.dob * 1000)) });
       }
+      console.log(data);
     };
 
     getPetData();
@@ -58,7 +75,9 @@ const PetInfo = () => {
           h="100px"
           borderRadius="25rem"
           bgColor="white"
-          bgImage={`url(${pet.avatar || defaultImage})`}
+          bgImage={`url(${
+            pet.avatar === 'undefined' ? defaultImage : pet.avatar
+          })`}
           bgPosition="center"
           bgSize="cover"
           pos="absolute"

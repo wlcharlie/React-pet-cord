@@ -10,6 +10,9 @@ const petsSlice = createSlice({
     clear: state => {
       return [];
     },
+    deleted: (state, action) => {
+      return state.filter(e => e._id !== action.payload.id);
+    },
   },
 });
 
