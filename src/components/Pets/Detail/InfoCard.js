@@ -19,6 +19,9 @@ import { formatDate } from '../../../utils/convertToDate';
 
 import PetDetail from './PetDetail';
 import PetEditForm from './PetEditForm';
+import BackLink from '../../layouts/BackLink';
+
+const defaultImage = 'https://image.flaticon.com/icons/png/512/528/528101.png';
 
 const PetInfo = () => {
   const history = useHistory();
@@ -50,10 +53,23 @@ const PetInfo = () => {
   return (
     <Fragment>
       <Container w="100%" mt="2rem" mb={5}>
-        <Link onClick={history.goBack}>{'< Go Back'}</Link>
+        <BackLink />
       </Container>
-      <Container>
-        <Tabs variant="soft-rounded" pos="relative">
+      <Container pos="relative">
+        <Box
+          w="100px"
+          h="100px"
+          borderRadius="25rem"
+          bgColor="white"
+          bgImage={`url(${pet.avatar || defaultImage})`}
+          bgPosition="center"
+          bgSize="cover"
+          pos="absolute"
+          right="50px"
+        >
+          <Skeleton w="100%" h="100%" isLoaded={pet} />
+        </Box>
+        <Tabs variant="soft-rounded">
           <TabList mb={1}>
             <Tab>Info</Tab>
             <Tab>Something</Tab>
@@ -88,19 +104,6 @@ const PetInfo = () => {
           </Skeleton>
         </Tabs>
       </Container>
-
-      <Box
-        w="100%"
-        h={['250px', null, null, null, '250px', '300px']}
-        bgColor="white"
-        bgImage={`url(${pet.avatar})`}
-        bgPosition="center"
-        bgSize={['cover', null, null, null, 'contain']}
-        pos="absolute"
-        bottom="0"
-      >
-        <Skeleton w="100%" h="100%" isLoaded={pet} />
-      </Box>
     </Fragment>
   );
 };

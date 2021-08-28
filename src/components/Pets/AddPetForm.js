@@ -27,6 +27,8 @@ const initialData = {
   note: '',
 };
 
+const defaultImage = 'https://image.flaticon.com/icons/png/512/528/528101.png';
+
 const newPetReducer = (state, action) => {
   return { ...state, [action.type]: [action.value] };
 };
@@ -36,9 +38,7 @@ const AddPetForm = props => {
   const UserId = useSelector(state => state.auth.id);
 
   const avatarRef = useRef();
-  const [avatar, setAvatar] = useState(
-    'https://image.flaticon.com/icons/png/512/528/528101.png'
-  );
+  const [avatar, setAvatar] = useState(defaultImage);
   const [{ name, dob, species, gender, note }, newPetDispatch] = useReducer(
     newPetReducer,
     initialData
@@ -91,7 +91,7 @@ const AddPetForm = props => {
               pos="absolute"
               zIndex="99"
               bgSize="cover"
-              bgImage={`url(${avatar})`}
+              bgImage={`url(${avatar || defaultImage})`}
               w="100%"
               h="100%"
               borderRadius="50%"

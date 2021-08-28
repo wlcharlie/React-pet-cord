@@ -12,6 +12,8 @@ import { formatDate } from '../../utils/convertToDate';
 import { FaAngleRight } from 'react-icons/fa';
 import { BsDash, BsFillCaretUpFill, BsFillCaretDownFill } from 'react-icons/bs';
 
+const defaultImage = 'https://image.flaticon.com/icons/png/512/528/528101.png';
+
 const OverviewCard = ({ data }) => {
   let latestDate = data.records.length
     ? formatDate(new Date(data.records[0].date * 1000))
@@ -48,9 +50,7 @@ const OverviewCard = ({ data }) => {
             h="100%"
             borderBottomRightRadius="50rem"
             bgImage={`url(${
-              data.avatar === 'undefined'
-                ? 'https://image.flaticon.com/icons/png/512/4388/4388652.png'
-                : data.avatar
+              data.avatar === 'undefined' ? defaultImage : data.avatar
             })`}
             bgRepeat="no-repeat"
             bgSize="cover"

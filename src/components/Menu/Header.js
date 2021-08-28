@@ -10,14 +10,14 @@ import User from './User';
 const Header = () => {
   return (
     <Flex
-      p={1}
+      px={1}
+      py={5}
       boxShadow="base"
       align="center"
       pos="sticky"
       top="0"
       bg="white"
       zIndex="dropdown"
-      h="7%"
     >
       <Center>
         <DrawerMenu />

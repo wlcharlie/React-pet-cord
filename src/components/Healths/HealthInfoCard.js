@@ -6,6 +6,9 @@ import { getPetHealth } from '../../api/healths';
 import AddHealthMenu from './AddHealthMenu';
 import HealthRecord from './HealthRecord';
 import EditHealthForm from './EditHealthForm';
+import BackLink from '../layouts/BackLink';
+
+const defaultImage = 'https://image.flaticon.com/icons/png/512/528/528101.png';
 
 const HealthInfoCard = () => {
   const history = useHistory();
@@ -50,11 +53,11 @@ const HealthInfoCard = () => {
       setLoaded(true);
     }
   }, [pet, records]);
-
+  console.log(pet);
   return (
     <Fragment>
       <Box p="3" w="100%">
-        <Link onClick={history.goBack}>{'< Go Back'}</Link>
+        <BackLink />
         <Box
           w="100%"
           h="80vh"
@@ -76,7 +79,9 @@ const HealthInfoCard = () => {
                 borderTopLeftRadius={['1rem', null, '1rem']}
                 borderTopRightRadius={['1rem', null, '0']}
                 borderBottomLeftRadius={['0', null, '1rem']}
-                bgImage={`url(${pet.avatar})`}
+                bgImage={`url(${
+                  pet.avatar === 'undefined' ? defaultImage : pet.avatar
+                })`}
                 bgRepeat="no-repeat"
                 bgSize="cover"
                 bgPosition="center"

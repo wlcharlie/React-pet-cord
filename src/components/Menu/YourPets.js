@@ -9,11 +9,12 @@ import {
 import React, { useEffect } from 'react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { getPets } from '../../api/pets';
 import { petsActions } from '../../store/pets';
 
 let init = true;
+const defaultImage = 'https://image.flaticon.com/icons/png/512/528/528101.png';
 
 const Pets = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,14 @@ const Pets = () => {
     // eslint-disable-next-line
   }, []);
 
+  if (!pets.length) {
+    return (
+      <MenuItem as={Link} to="/pets">
+        Add more pets?
+      </MenuItem>
+    );
+  }
+
   return pets.map(e => (
     <MenuItem
       as={NavLink}
@@ -43,11 +52,7 @@ const Pets = () => {
       <Image
         boxSize="2rem"
         borderRadius="full"
-        src={
-          e.avatar === 'undefined'
-            ? 'https://image.flaticon.com/icons/png/512/4388/4388652.png'
-            : e.avatar
-        }
+        src={e.avatar === 'undefined' ? defaultImage : e.avatar}
         alt={e.name}
         mr="12px"
       />

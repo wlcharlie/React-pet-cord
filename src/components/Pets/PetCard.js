@@ -11,6 +11,8 @@ import { Link as RouteLink } from 'react-router-dom';
 import { FaCat, FaDog, FaHeart, FaAngleRight } from 'react-icons/fa';
 import { toAge } from '../../utils/convertToAge';
 
+const defaultImage = 'https://image.flaticon.com/icons/png/512/528/528101.png';
+
 const PetCard = props => {
   const { name, gender, dob, species, note, avatar, _id } = props.data;
   const age = toAge(dob);
@@ -32,11 +34,7 @@ const PetCard = props => {
         pos={[null, 'absolute', null, 'static']}
         bottom={[null, '20px', null]}
         left={[null, '-20px', null]}
-        bgImage={`url(${
-          avatar === 'undefined'
-            ? 'https://image.flaticon.com/icons/png/512/4388/4388652.png'
-            : avatar
-        })`}
+        bgImage={`url(${avatar === 'undefined' ? defaultImage : avatar})`}
         borderLeftRadius={['0.5rem', '0']}
         borderRadius={[null, '0.5rem', null, '0.5rem 0 0 0.5rem']}
         borderWidth={['none', '5px', null, 0]}

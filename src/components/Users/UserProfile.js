@@ -19,6 +19,7 @@ import useFormEvent from '../../hooks/useFormEvent';
 import { FaCamera } from 'react-icons/fa';
 import { updateUserInfo, updatePassword } from '../../api/user';
 import { AlertError } from '../layouts/Alert';
+import BackLink from '../layouts/BackLink';
 
 const defaultAvatar =
   'https://image.flaticon.com/icons/png/512/1596/1596810.png';
@@ -82,9 +83,7 @@ const UserProfile = () => {
 
   return (
     <form onSubmit={updateUser} onChange={eventHandler.typing}>
-      <Link ml={5} onClick={history.goBack}>
-        {'< Go Back'}
-      </Link>
+      <BackLink />
 
       <Box
         m={5}

@@ -88,9 +88,7 @@ const LoginDrawer = () => {
     <Fragment>
       <Drawer isOpen={true} placement="right" size="md">
         <form onSubmit={submitHandler}>
-          <DrawerContent
-            background={['rgba(255,255,255,0.95)', null, null, 'white']}
-          >
+          <DrawerContent background={['rgba(255,255,255,0.95)', null, 'white']}>
             <DrawerHeader textAlign="center">PetCord</DrawerHeader>
 
             {form === 'login' && (
