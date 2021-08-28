@@ -53,7 +53,6 @@ const UserProfile = () => {
   const updateUser = async e => {
     e.preventDefault();
     eventHandler.pending();
-    console.log(user);
 
     if (user.password) {
       const { res, data } = await updatePassword({

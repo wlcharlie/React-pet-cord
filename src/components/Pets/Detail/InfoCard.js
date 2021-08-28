@@ -57,7 +57,6 @@ const PetInfo = () => {
       if (res.ok) {
         setPet({ ...data, dob: formatDate(new Date(data.dob * 1000)) });
       }
-      console.log(data);
     };
 
     getPetData();

@@ -53,7 +53,6 @@ const AddHealthForm = ({ data, editModeHandler, refresh }) => {
     eventHandler.typing();
     newHealthDispatch({ type: e.target.name, value: e.target.value });
   };
-  console.log(data);
   const addHandler = async e => {
     e.preventDefault();
     eventHandler.pending();

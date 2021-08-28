@@ -35,7 +35,6 @@ const PetEditForm = ({ pet, switchHandler, getUpdate }) => {
       });
     }
   };
-  console.log(petData);
   const updateInfo = async e => {
     e.preventDefault();
     const updateData = {
@@ -54,7 +53,6 @@ const PetEditForm = ({ pet, switchHandler, getUpdate }) => {
       getUpdate(petData);
       switchHandler();
     }
-    console.log(res, data);
   };
 
   return (

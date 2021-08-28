@@ -46,7 +46,6 @@ const AddHealthForm = props => {
 
   const imagePreview = e => {
     if (!e.target.files.length) return;
-    console.log(e.target.files);
     setImage(URL.createObjectURL(e.target.files[0]));
   };
 

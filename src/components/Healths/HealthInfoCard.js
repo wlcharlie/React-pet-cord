@@ -52,7 +52,6 @@ const HealthInfoCard = () => {
       setLoaded(true);
     }
   }, [pet, records]);
-  console.log(pet);
   return (
     <Fragment>
       <Box p="3" w="100%">

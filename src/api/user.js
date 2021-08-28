@@ -2,7 +2,6 @@ const db = 'https://pet-cord.herokuapp.com/api';
 
 export const updateUserInfo = async ({ id, name, avatar }) => {
   const formData = new FormData();
-  console.log(avatar);
   formData.append('name', name);
   if (avatar) {
     formData.append('avatar', avatar);
