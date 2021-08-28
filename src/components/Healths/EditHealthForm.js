@@ -15,12 +15,13 @@ import {
   Button,
   Text,
 } from '@chakra-ui/react';
-import { FaCamera } from 'react-icons/fa';
+
 import { useState, useRef, useReducer } from 'react';
-import { updatePetHealth } from '../../api/healths';
 import useFormEvent from '../../hooks/useFormEvent';
-import { AlertError } from '../layouts/Alert';
 import { formatDate } from '../../utils/convertToDate';
+import { updatePetHealth } from '../../api/healths';
+import { AlertError } from '../layouts/Alert';
+import { FaCamera } from 'react-icons/fa';
 
 const newHealthReducer = (state, action) => {
   if (action.type === 'med' || action.type === 'poo') {

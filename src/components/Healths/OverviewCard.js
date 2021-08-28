@@ -8,8 +8,8 @@ import {
   HStack,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import { FaAngleRight } from 'react-icons/fa';
 import { formatDate } from '../../utils/convertToDate';
+import { FaAngleRight } from 'react-icons/fa';
 import { BsDash, BsFillCaretUpFill, BsFillCaretDownFill } from 'react-icons/bs';
 
 const OverviewCard = ({ data }) => {

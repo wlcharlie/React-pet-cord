@@ -12,10 +12,10 @@ import {
   HStack,
   Divider,
 } from '@chakra-ui/react';
-import { FaEdit, FaTimes } from 'react-icons/fa';
-import { deletePetHealth } from '../../api/healths';
-import { formatDate } from '../../utils/convertToDate';
 import HealthImagePreview from './HealthImagePreview';
+import { formatDate } from '../../utils/convertToDate';
+import { deletePetHealth } from '../../api/healths';
+import { FaEdit, FaTimes } from 'react-icons/fa';
 
 const HealthRecord = ({ data, refresh, editModeHandler }) => {
   const deleteHandler = async () => {

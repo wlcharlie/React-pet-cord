@@ -8,7 +8,7 @@ const Overview = () => {
 
   useEffect(() => {
     const getOverview = async () => {
-      const { res, data } = await overviewHealth();
+      const { data } = await overviewHealth();
       setPetHealthsData(data);
     };
 

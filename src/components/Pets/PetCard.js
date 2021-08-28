@@ -5,7 +5,6 @@ import {
   Divider,
   Flex,
   Button,
-  Tag,
   Link,
 } from '@chakra-ui/react';
 import { Link as RouteLink } from 'react-router-dom';

@@ -1,4 +1,4 @@
-import { Flex, Text, Box, Grid, VStack, Divider } from '@chakra-ui/react';
+import { Flex, Text, Box, Grid, Divider } from '@chakra-ui/react';
 
 const data = {
   pets: {

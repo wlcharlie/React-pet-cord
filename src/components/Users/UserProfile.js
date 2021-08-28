@@ -68,7 +68,7 @@ const UserProfile = () => {
         return setError(data.error);
       }
     }
-    const { res, data } = await updateUserInfo({
+    const { res } = await updateUserInfo({
       id,
       name: user.name,
       avatar: avatarRef.current.files[0] || avatar,

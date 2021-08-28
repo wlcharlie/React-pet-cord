@@ -1,4 +1,3 @@
-import { Fragment, useRef } from 'react';
 import {
   Button,
   Image,
@@ -11,6 +10,7 @@ import {
   ModalCloseButton,
   useDisclosure,
 } from '@chakra-ui/react';
+import { Fragment, useRef } from 'react';
 import { FaImage } from 'react-icons/fa';
 
 const HealthImagePreview = ({ image }) => {

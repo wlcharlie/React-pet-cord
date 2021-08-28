@@ -30,10 +30,11 @@ const HealthInfoCard = () => {
 
   useEffect(() => {
     const loadingView = async () => {
-      const { res, data } = await getPetHealth(petId);
+      const { data } = await getPetHealth(petId);
       setRecords(data);
     };
     loadingView();
+    // eslint-disable-next-line
   }, [refresh]);
 
   useEffect(() => {
@@ -41,6 +42,7 @@ const HealthInfoCard = () => {
       const petData = pets.filter(e => e._id === petId);
       setPet(petData[0]);
     }
+    // eslint-disable-next-line
   }, [pets]);
 
   useEffect(() => {

@@ -29,6 +29,7 @@ const Pets = () => {
       init = false;
       initPet();
     }
+    // eslint-disable-next-line
   }, []);
 
   return pets.map(e => (
