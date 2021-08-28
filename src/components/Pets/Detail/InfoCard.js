@@ -9,10 +9,8 @@ import {
   Tab,
   TabList,
   TabPanels,
-  Link,
   Skeleton,
 } from '@chakra-ui/react';
-import { useHistory } from 'react-router-dom';
 
 import { getPet } from '../../../api/pets';
 import { formatDate } from '../../../utils/convertToDate';
@@ -24,7 +22,6 @@ import BackLink from '../../layouts/BackLink';
 const defaultImage = 'https://image.flaticon.com/icons/png/512/528/528101.png';
 
 const PetInfo = () => {
-  const history = useHistory();
   const { petId } = useParams();
   const UserId = useSelector(state => state.auth.id);
   const [pet, setPet] = useState(false);

@@ -1,7 +1,7 @@
 import { Text, Box, Grid, Accordion, Skeleton } from '@chakra-ui/react';
 import { Fragment, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams, Link, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getPetHealth } from '../../api/healths';
 import AddHealthMenu from './AddHealthMenu';
 import HealthRecord from './HealthRecord';
@@ -11,7 +11,6 @@ import BackLink from '../layouts/BackLink';
 const defaultImage = 'https://image.flaticon.com/icons/png/512/528/528101.png';
 
 const HealthInfoCard = () => {
-  const history = useHistory();
   const { petId } = useParams();
   const pets = useSelector(state => state.pets);
   const [loaded, setLoaded] = useState(false);

@@ -9,11 +9,9 @@ import {
   FormHelperText,
   Divider,
   Flex,
-  Link,
   Button,
 } from '@chakra-ui/react';
 import { useState, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import useFormEvent from '../../hooks/useFormEvent';
 import { FaCamera } from 'react-icons/fa';
@@ -30,7 +28,6 @@ const UserProfile = () => {
   );
   const [user, setUser] = useState({ avatar, email, name, password });
   const [previewAvatar, setPreviewAvatar] = useState(avatar);
-  const history = useHistory();
   const avatarRef = useRef();
   const refresh = () => {};
   const onClose = () => {};
