@@ -21,13 +21,15 @@ const OverviewCard = ({ data }) => {
   const secondData = data.records[1];
   const compare = {};
 
-  for (let i in latestData) {
-    if (latestData[i] > secondData[i]) {
-      compare[i] = <BsFillCaretUpFill style={{ color: 'red' }} />;
-    } else if (latestData[i] > secondData[i]) {
-      compare[i] = <BsFillCaretDownFill style={{ color: 'skyblue' }} />;
-    } else {
-      compare[i] = <BsDash />;
+  if (latestData && secondData) {
+    for (let i in latestData) {
+      if (+latestData[i] > +secondData[i]) {
+        compare[i] = <BsFillCaretUpFill style={{ color: 'red' }} />;
+      } else if (+latestData[i] < +secondData[i]) {
+        compare[i] = <BsFillCaretDownFill style={{ color: 'skyblue' }} />;
+      } else {
+        compare[i] = <BsDash />;
+      }
     }
   }
 
@@ -77,7 +79,7 @@ const OverviewCard = ({ data }) => {
               </Text>
               <HStack>
                 <Text>
-                  {latestData ? latestData.weight : '--'}{' '}
+                  {latestData ? latestData.weight : '--'}
                   <Text as="sub">kg</Text>
                 </Text>
                 {compare.weight}
