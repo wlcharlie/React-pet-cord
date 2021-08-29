@@ -29,7 +29,7 @@ PetCord is self-side-project which develop with separation of front-end and back
 
 # More pictures
 
-<img src="./public/img/image7.png" width="500">
+<img src="./public/img/image7.png" width="800">
 
 <img src="./public/img/image6.png" width="500">
 
