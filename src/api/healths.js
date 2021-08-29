@@ -1,5 +1,4 @@
-const db = 'https://pet-cord.herokuapp.com/api';
-
+const db = process.env.REACT_APP_DB;
 export const addNewHealth = async ({ PetId, record }) => {
   const formData = new FormData();
   for (let i in record) {

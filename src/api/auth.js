@@ -1,4 +1,4 @@
-const db = 'https://pet-cord.herokuapp.com/api';
+const db = process.env.REACT_APP_DB;
 
 export const registerAPI = async ({ email, password, username }) => {
   try {

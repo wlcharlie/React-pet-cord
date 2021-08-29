@@ -1,5 +1,4 @@
-const db = 'https://pet-cord.herokuapp.com/api';
-
+const db = process.env.REACT_APP_DB;
 export const addPet = async data => {
   const formData = new FormData();
   for (let i in data) {

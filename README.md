@@ -1,68 +1,112 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# PetCord | Your Pets Health Tracker
 
-## Available Scripts
+<img src="./public/img/image8.png">
 
-In the project directory, you can run:
+PetCord is a pets health tracker where you can create your own account to store your pets information, note their every detail, and record their daily health status even with a nice picture.
 
-### `npm start`
+You got a pet need to take care? No problem!
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+:fire: Give it a try: https://pet-cord.web.app/
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+You can also login with example account to take a look
 
-### `npm test`
+```
+example@example.com
+12345678
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Index
 
-### `npm run build`
+- [Intro](#Intro)
+- [More Pictures](#more-pictures)
+- [Features](#Features)
+- [Tech & Package](#tech-&-package)
+- [Contributors](#contributors)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Intro
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+PetCord is self-side-project which develop with separation of front-end and back-end.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# More pictures
 
-### `npm run eject`
+<img src="./public/img/image1.png" width="100">
+<img src="./public/img/image2.png" width="100">
+<img src="./public/img/image3.png" width="100">
+<img src="./public/img/image4.png" width="100">
+<img src="./public/img/image5.png" width="100">
+<img src="./public/img/image6.png" width="500">
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Features
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## User
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Login/Account
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Create an account with email
+- Auth by firebase
+- Edit user profile information
+- Avatar
 
-## Learn More
+### Actions
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Overview all the pets
+- Manage/Edit the pets information
+- Track all pets health records
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Pets
 
-### Code Splitting
+### Profile
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+- Add/Edit every pets profile
+- Note with Detail
+- Avatar
 
-### Analyzing the Bundle Size
+### Health
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+- Add Health Record
+- Record with Image
+- Overview with the latest two records with compare
 
-### Making a Progressive Web App
+## Image/Avatar
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+- using Imgur API
 
-### Advanced Configuration
+# Tech & Package
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## Front-End
 
-### Deployment
+Create-react-app with chakra-ui
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+- React
+- React icon
+- Chakra UI
+- Redux / Redux-toolkit
+- React Router
+- Framer
 
-### `npm run build` fails to minify
+## Back-End
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Env
+
+- Node.js
+- Express
+- Multer
+- Mongoose (for db)
+
+### DateBase
+
+- MongoDB
+- Imgur (for image/avatar)
+
+### Deploy
+
+- Heroku
+- Atlas(MongoDB)
+
+# Contributors
+
+[Charlie](https://github.com/wlcharlie/wlcharlie)
+
+Feel free to contact me if there is some buggy
+
+:email: wl00606352@gmail.com
