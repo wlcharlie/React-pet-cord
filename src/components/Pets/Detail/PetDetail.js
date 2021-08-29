@@ -37,7 +37,7 @@ const PetDetail = ({ pet, petId, UserId, switchHandler }) => {
         <Text>{pet.note}</Text>
       </Box>
       <Divider />
-      <Flex h="33%" align="center" justify="space-around">
+      <Flex h="33%" mt={3} align="center" justify="space-around">
         <Link to={`/healths/${pet._id}`}>
           <Button w={['85px', '100px']} h="80px" colorScheme="green">
             <VStack>

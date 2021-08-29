@@ -1,5 +1,6 @@
 import { Fragment, lazy, Suspense } from 'react';
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import PrivateRoute from './PrivateRoute';
 import Loading from '../components/layouts/Loading';
 import Header from '../components/Menu/Header';
@@ -16,24 +17,26 @@ const User = lazy(() => import('../pages/User'));
 
 const Index = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-
+  const location = useLocation();
   return (
     <Fragment>
       {isLoggedIn && <Header />}
       <Suspense fallback={<Loading />}>
-        <Switch>
-          <Route path="/" exact>
-            <Redirect to="/login" />
-          </Route>
-          <Route path="/login" component={Login} />
-          <PrivateRoute path="/home" component={HomePage} />
-          <PrivateRoute path="/pets/:petId" component={EditPets} />
-          <PrivateRoute path="/pets" component={Pets} />
-          <PrivateRoute path="/healths/:petId" component={Health} />
-          <PrivateRoute path="/healths" component={Healths} />
-          <PrivateRoute path="/user" component={User} />
-          <Route path="*" component={Lost} />
-        </Switch>
+        <AnimatePresence exitBeforeEnter initial={false}>
+          <Switch location={location} key={location.pathname}>
+            <Route path="/" exact>
+              <Redirect to="/login" />
+            </Route>
+            <Route path="/login" component={Login} />
+            <PrivateRoute path="/home" component={HomePage} />
+            <PrivateRoute path="/pets/:petId" component={EditPets} />
+            <PrivateRoute path="/pets" component={Pets} />
+            <PrivateRoute path="/healths/:petId" component={Health} />
+            <PrivateRoute path="/healths" component={Healths} />
+            <PrivateRoute path="/user" component={User} />
+            <Route path="*" component={Lost} />
+          </Switch>
+        </AnimatePresence>
       </Suspense>
     </Fragment>
   );

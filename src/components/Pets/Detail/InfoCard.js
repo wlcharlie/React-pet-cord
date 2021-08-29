@@ -16,6 +16,7 @@ import {
 import { getPet } from '../../../api/pets';
 import { formatDate } from '../../../utils/convertToDate';
 
+import Motion from '../../motion/Motion';
 import PetDetail from './PetDetail';
 import PetEditForm from './PetEditForm';
 import BackLink from '../../layouts/BackLink';
@@ -99,19 +100,23 @@ const PetInfo = () => {
                 bg="white"
               >
                 {!edit && (
-                  <PetDetail
-                    pet={pet}
-                    petId={petId}
-                    UserId={UserId}
-                    switchHandler={switchingHandler}
-                  />
+                  <Motion>
+                    <PetDetail
+                      pet={pet}
+                      petId={petId}
+                      UserId={UserId}
+                      switchHandler={switchingHandler}
+                    />
+                  </Motion>
                 )}
                 {edit && (
-                  <PetEditForm
-                    pet={pet}
-                    switchHandler={switchingHandler}
-                    getUpdate={getUpdate}
-                  />
+                  <Motion>
+                    <PetEditForm
+                      pet={pet}
+                      switchHandler={switchingHandler}
+                      getUpdate={getUpdate}
+                    />
+                  </Motion>
                 )}
               </TabPanel>
               <TabPanel>這裡還不知道可以放什麼</TabPanel>
