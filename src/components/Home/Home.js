@@ -114,7 +114,7 @@ const Home = () => {
             w="100%"
             rel="nooppener noreferrer"
             target="_blank"
-            href="https://wlcharlie.github.io/"
+            href="https://github.com/wlcharlie/React-pet-cord"
           >
             <GuideButton data="me" />
           </Box>
