@@ -93,6 +93,12 @@ const UserProfile = () => {
           User Information
         </Text>
         {error && <AlertError error={error} />}
+        {user.name.includes('example') && (
+          <AlertError
+            error={{ message: 'Sorry, the example account is READONLY.' }}
+          />
+        )}
+
         <Divider />
         <Grid w="100%" h="90%" px={3} templateColumns={['1fr', '1fr 1fr']}>
           <Flex w="100%" h="100%" align="center" justify="center">
@@ -150,7 +156,8 @@ const UserProfile = () => {
                 type="name"
                 name="name"
                 value={user.name}
-                onChange={editHandler}
+                onChange={user.name.includes('example') ? null : editHandler}
+                isDisabled={user.name.includes('example')}
               />
             </FormControl>
             <FormControl id="password">
@@ -159,7 +166,8 @@ const UserProfile = () => {
                 type="password"
                 name="password"
                 value={user.password}
-                onChange={editHandler}
+                onChange={user.name.includes('example') ? null : editHandler}
+                isDisabled={user.name.includes('example')}
               />
               <FormHelperText>
                 Remember to save if you want to change the info
@@ -171,6 +179,7 @@ const UserProfile = () => {
                 colorScheme="blue"
                 mr={3}
                 isLoading={loading}
+                isDisabled={user.name.includes('example')}
               >
                 Save
               </Button>

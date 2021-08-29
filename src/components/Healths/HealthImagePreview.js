@@ -16,14 +16,13 @@ import { FaImage } from 'react-icons/fa';
 const HealthImagePreview = ({ image }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = useRef();
-
   return (
     <Fragment>
       <Button
         variant="ghost"
         colorScheme="blue"
         onClick={onOpen}
-        isDisabled={!image.length}
+        isDisabled={!image.length || image[0] === 'undefined' || !image[0]}
       >
         <FaImage />
       </Button>

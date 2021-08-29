@@ -54,7 +54,7 @@ const AddHealthMenu = ({ refresh }) => {
         placement="bottom"
         onClose={leaveConfirm}
         finalFocusRef={() => window}
-        size="sm"
+        size="auto"
         onChange={eventHandler.typing}
       >
         <DrawerOverlay />

@@ -91,7 +91,11 @@ const OverviewCard = ({ data }) => {
               </Text>
               <HStack>
                 <Text>
-                  {latestData ? latestData.water : '--'}{' '}
+                  {latestData
+                    ? +latestData.water
+                      ? latestData.water
+                      : '--'
+                    : '--'}
                   <Text as="sub">ml</Text>
                 </Text>
                 {compare.water}
@@ -103,7 +107,12 @@ const OverviewCard = ({ data }) => {
               </Text>
               <HStack>
                 <Text>
-                  {latestData ? latestData.food : '--'} <Text as="sub">g</Text>
+                  {latestData
+                    ? +latestData.food
+                      ? latestData.food
+                      : '--'
+                    : '--'}
+                  <Text as="sub">g</Text>
                 </Text>
                 {compare.food}
               </HStack>

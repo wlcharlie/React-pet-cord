@@ -39,7 +39,7 @@ const AddHealthForm = props => {
   const { petId: PetId } = useParams();
   const imageRef = useRef();
   const [image, setImage] = useState(
-    'https://image.flaticon.com/icons/png/512/528/528101.png'
+    'https://image.flaticon.com/icons/png/512/4047/4047371.png'
   );
   const [{ date, weight, water, food, med, poo, other }, newHealthDispatch] =
     useReducer(newHealthReducer, initialData);
@@ -67,7 +67,7 @@ const AddHealthForm = props => {
         med,
         poo,
         other,
-        image: imageRef.current.files[0],
+        image: imageRef.current.files[0] || '',
       },
     };
 
@@ -85,7 +85,11 @@ const AddHealthForm = props => {
       id="newHealthForm"
       enctype="multipart/form-data"
     >
-      <Grid templateColumns="1fr 1fr 1fr 1fr" gap={6} onChange={changeHandler}>
+      <Grid
+        templateColumns={['1fr', null, '1fr 1fr', '1fr 1fr 1fr 1fr']}
+        gap={[2, 5]}
+        onChange={changeHandler}
+      >
         <FormControl id="date" isRequired>
           <FormLabel>Date</FormLabel>
           <Input type="date" name="date" value={date} />
@@ -123,7 +127,7 @@ const AddHealthForm = props => {
             </Checkbox>
           </HStack>
         </FormControl>
-        <GridItem colSpan={2}>
+        <GridItem colSpan={[1, 2]}>
           <FormControl id="other">
             <FormLabel>Other</FormLabel>
             <Textarea placeholder="Some detail?" name="other" value={other} />
@@ -147,7 +151,8 @@ const AddHealthForm = props => {
               bgImage={`url(${image})`}
               w="100%"
               h="100%"
-              borderRadius="50%"
+              borderWidth="none"
+              borderRadius="0%"
               transition="0.2s"
               _hover={{
                 filter: 'blur(2px) brightness(50%)',
