@@ -80,6 +80,7 @@ Create-react-app with chakra-ui
 - Redux / Redux-toolkit
 - React Router
 - Framer
+- Firebase Hosting
 
 ## Back-End
 
@@ -94,6 +95,10 @@ Create-react-app with chakra-ui
 
 - MongoDB
 - Imgur (for image/avatar)
+
+### Auth
+
+- Firebase Auth
 
 ### Deploy
 
