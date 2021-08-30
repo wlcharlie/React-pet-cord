@@ -6,7 +6,7 @@ PetCord is a pets health tracker where you can create your own account to store 
 
 You got a pet need to take care? No problem!
 
-:fire: Give it a try: https://pet-cord.web.app/
+:fire: Give it a try: [https://pet-cord.web.app/](https://pet-cord.web.app/)
 
 You can also login with example account to take a look
 
