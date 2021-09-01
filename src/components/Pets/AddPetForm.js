@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { FaCamera } from 'react-icons/fa';
 import { useState, useRef, useReducer } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { addPet } from '../../api/pets';
 import { useHistory } from 'react-router';
@@ -36,7 +36,6 @@ const newPetReducer = (state, action) => {
 const AddPetForm = props => {
   const history = useHistory();
   const UserId = useSelector(state => state.auth.id);
-
   const avatarRef = useRef();
   const [avatar, setAvatar] = useState(defaultImage);
   const [{ name, dob, species, gender, note }, newPetDispatch] = useReducer(
@@ -55,7 +54,7 @@ const AddPetForm = props => {
 
   const addHandler = async e => {
     e.preventDefault();
-    props.submit.pending();
+    props.eventHandler.pending();
     const { res } = await addPet({
       avatar: avatarRef.current.files[0],
       name,
@@ -66,10 +65,10 @@ const AddPetForm = props => {
       UserId,
     });
     if (res.ok) {
-      props.submit.success();
+      props.eventHandler.success();
       history.go(0);
     } else {
-      props.submit.fail();
+      props.eventHandler.fail();
     }
   };
 

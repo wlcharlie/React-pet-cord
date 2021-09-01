@@ -13,54 +13,20 @@ import {
   AlertIcon,
   useToast,
 } from '@chakra-ui/react';
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useRef } from 'react';
 import { BsPlusCircleFill } from 'react-icons/bs';
+import useFormEvent from '../../hooks/useFormEvent';
+import { AlertError } from '../layouts/Alert';
 
 import AddPetForm from './AddPetForm';
 
 const AddPetMenu = () => {
-  const [typed, setTyped] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { eventHandler, leaveConfirm, loading, error } = useFormEvent({
+    refresh: () => {},
+    onClose,
+  });
   const btnRef = useRef();
-  const toast = useToast();
-
-  const leaveConfirm = () => {
-    if (typed) {
-      const check = window.confirm(
-        'Your data still up there, you will lose it after the leaving. Are you sure and leave?'
-      );
-      if (!check) return;
-    }
-    setTyped(false);
-    onClose();
-  };
-
-  const eventHandler = {
-    pending: () => {
-      setLoading(true);
-    },
-
-    success: () => {
-      setLoading(false);
-      setTyped(false);
-      onClose();
-      toast({
-        title: 'Success',
-        description: 'A new pet has joined!',
-        status: 'success',
-        duration: 6000,
-        position: 'bottom-right',
-        isClosable: true,
-      });
-    },
-
-    fail: () => {
-      setLoading(false);
-      setError(true);
-    },
-  };
 
   return (
     <Fragment>
@@ -92,7 +58,7 @@ const AddPetMenu = () => {
         onClose={leaveConfirm}
         finalFocusRef={() => window}
         size="sm"
-        onChange={() => setTyped(true)}
+        onChange={eventHandler.typing()}
       >
         <DrawerOverlay />
         <DrawerContent>
@@ -100,15 +66,10 @@ const AddPetMenu = () => {
           <DrawerHeader>Adding a new friend?</DrawerHeader>
 
           <DrawerBody>
-            <AddPetForm submit={eventHandler} />
+            <AddPetForm eventHandler={eventHandler} />
           </DrawerBody>
 
-          {error && (
-            <Alert status="warning">
-              <AlertIcon />
-              Something gone wrong... Please try again!
-            </Alert>
-          )}
+          {error && <AlertError />}
 
           <DrawerFooter justifyContent="space-between">
             <Button
