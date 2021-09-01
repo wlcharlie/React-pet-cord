@@ -36,7 +36,7 @@ const LoginForm = props => {
           </Tooltip>
         </Text>
         <Text
-          onClick={props.formChangeHandler}
+          onClick={props.dispatchForm}
           textAlign="right"
           _hover={{ cursor: 'pointer', fontWeight: 'bolder' }}
         >

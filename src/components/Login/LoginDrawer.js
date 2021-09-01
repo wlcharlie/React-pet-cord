@@ -1,8 +1,3 @@
-import { Fragment, useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { authActions } from '../../store/auth';
-import { useHistory } from 'react-router';
-
 import {
   Drawer,
   DrawerFooter,
@@ -13,22 +8,31 @@ import {
   AlertIcon,
   CloseButton,
 } from '@chakra-ui/react';
+import { Fragment, useState, useRef, useReducer } from 'react';
+import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../store/auth';
 
 import { registerAPI, loginAPI } from '../../api/auth';
 
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
+import useFormEvent from '../../hooks/useFormEvent';
+
+const formChangeHandler = (state, action) => {
+  return state === 'login' ? 'register' : 'login';
+};
 
 const LoginDrawer = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [form, setForm] = useState('login');
-  const formChangeHandler = () => {
-    form === 'login' ? setForm('register') : setForm('login');
-  };
+  const [form, dispatchForm] = useReducer(formChangeHandler, 'login');
+  const { eventHandler, leaveConfirm, loading, error, setError } = useFormEvent(
+    { refresh: () => {}, onClose: () => {} }
+  );
 
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
+  // const [loading, setLoading] = useState(false);
   const loginData = { loginEmail: useRef(), loginPassword: useRef() };
   const regData = {
     regUsername: useRef(),
@@ -39,8 +43,7 @@ const LoginDrawer = () => {
 
   const submitHandler = async e => {
     e.preventDefault();
-    setError(null);
-    setLoading(true);
+    eventHandler.pending();
 
     if (form === 'login') {
       const { loginEmail, loginPassword } = loginData;
@@ -48,8 +51,7 @@ const LoginDrawer = () => {
       const password = loginPassword.current.value;
       const { res, data, user } = await loginAPI({ email, password });
       if (!res.ok || !res) {
-        setError(data.error.message);
-        setLoading(false);
+        eventHandler.fail(data.error.message);
         return;
       }
       dispatch(authActions.login({ token: data.idToken, ...user }));
@@ -62,8 +64,7 @@ const LoginDrawer = () => {
       const password = regPassword.current.value;
       const passwordCheck = regPasswordCheck.current.value;
       if (passwordCheck !== password) {
-        setError('Both password fields are not identical');
-        setLoading(false);
+        eventHandler.fail('Both password fields are not identical');
         return;
       }
 
@@ -74,13 +75,12 @@ const LoginDrawer = () => {
       });
 
       if (!res.ok) {
-        setError(data.error.message);
-        setLoading(false);
+        eventHandler.fail(data.error.message);
         return;
       }
       dispatch(authActions.login({ token: data.idToken, ...user }));
     }
-    setLoading(false);
+    eventHandler.success('Welcome Back!');
     history.replace('/home');
   };
 
@@ -92,16 +92,10 @@ const LoginDrawer = () => {
             <DrawerHeader textAlign="center">PetCord</DrawerHeader>
 
             {form === 'login' && (
-              <LoginForm
-                formChangeHandler={formChangeHandler}
-                loginData={loginData}
-              />
+              <LoginForm dispatchForm={dispatchForm} loginData={loginData} />
             )}
             {form === 'register' && (
-              <RegisterForm
-                formChangeHandler={formChangeHandler}
-                regData={regData}
-              />
+              <RegisterForm dispatchForm={dispatchForm} regData={regData} />
             )}
             <DrawerFooter flexDirection="column" h="20%">
               {error && (

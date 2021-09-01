@@ -38,7 +38,7 @@ const RegisterForm = props => {
 
         <Divider my={3} />
         <Text
-          onClick={props.formChangeHandler}
+          onClick={props.dispatchForm}
           _hover={{ cursor: 'pointer', fontWeight: 'bolder' }}
         >
           <MdChevronLeft style={{ display: 'inline' }} />

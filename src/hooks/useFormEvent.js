@@ -28,24 +28,24 @@ const useFormEvent = ({ refresh, onClose }) => {
       setLoading(true);
     },
 
-    success: () => {
+    success: successMsg => {
       setLoading(false);
       setTyped(false);
       refresh(prev => !prev);
       onClose();
       toast({
         title: 'Success',
-        description: 'A Record has added',
+        description: successMsg || 'Your actions has succeeded',
         status: 'success',
-        duration: 6000,
+        duration: 5000,
         position: 'bottom-right',
         isClosable: true,
       });
     },
 
-    fail: () => {
+    fail: errorMsg => {
       setLoading(false);
-      setError(true);
+      setError(errorMsg || true);
     },
   };
 
