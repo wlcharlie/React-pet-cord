@@ -11,23 +11,19 @@ import { findAccountAPI } from './api/auth';
 import { authActions } from './store/auth';
 
 const initToken = async () => {
-  if (!localStorage.getItem('token')) return render();
-
   try {
+    if (!localStorage.getItem('token')) throw new Error('no token');
     const data = await findAccountAPI(localStorage.getItem('token'));
 
-    if (data.res.ok && data.userRes.ok) {
-      store.dispatch(
-        authActions.login({
-          token: localStorage.getItem('token'),
-          ...data.user,
-        })
-      );
-    } else {
-      store.dispatch(authActions.logout());
-    }
-    render();
-  } catch {
+    store.dispatch(
+      authActions.login({
+        token: localStorage.getItem('token'),
+        ...data.user,
+      })
+    );
+  } catch (error) {
+    store.dispatch(authActions.logout());
+  } finally {
     render();
   }
 };

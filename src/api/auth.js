@@ -73,27 +73,31 @@ export const loginAPI = async ({ email, password }) => {
 };
 
 export const findAccountAPI = async token => {
-  try {
-    const res = await fetch(
-      'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=' +
-        process.env.REACT_APP_G_API,
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          idToken: token,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-    const data = await res.json();
-    const userRes = await fetch(db + '/users/' + data.users[0].localId, {
-      method: 'GET',
-    });
-    const user = await userRes.json();
-    return { res, data, userRes, user };
-  } catch {
-    return false;
+  const res = await fetch(
+    'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=' +
+      process.env.REACT_APP_G_API,
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        idToken: token,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.error.message);
   }
+
+  const userRes = await fetch(db + '/users/' + data.users[0].localId, {
+    method: 'GET',
+  });
+  const user = await userRes.json();
+  if (!userRes.ok) {
+    throw new Error(dbErrMsg);
+  }
+
+  return { data, user };
 };
