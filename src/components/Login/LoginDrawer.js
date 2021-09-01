@@ -8,7 +8,7 @@ import {
   AlertIcon,
   CloseButton,
 } from '@chakra-ui/react';
-import { Fragment, useState, useRef, useReducer } from 'react';
+import { Fragment, useRef, useReducer } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth';
@@ -19,7 +19,7 @@ import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import useFormEvent from '../../hooks/useFormEvent';
 
-const formChangeHandler = (state, action) => {
+const formChangeHandler = state => {
   return state === 'login' ? 'register' : 'login';
 };
 
@@ -27,12 +27,11 @@ const LoginDrawer = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [form, dispatchForm] = useReducer(formChangeHandler, 'login');
-  const { eventHandler, leaveConfirm, loading, error, setError } = useFormEvent(
-    { refresh: () => {}, onClose: () => {} }
-  );
+  const { eventHandler, loading, error, setError } = useFormEvent({
+    refresh: () => {},
+    onClose: () => {},
+  });
 
-  // const [error, setError] = useState(null);
-  // const [loading, setLoading] = useState(false);
   const loginData = { loginEmail: useRef(), loginPassword: useRef() };
   const regData = {
     regUsername: useRef(),
@@ -49,12 +48,12 @@ const LoginDrawer = () => {
       const { loginEmail, loginPassword } = loginData;
       const email = loginEmail.current.value;
       const password = loginPassword.current.value;
-      const { res, data, user } = await loginAPI({ email, password });
-      if (!res.ok || !res) {
-        eventHandler.fail(data.error.message);
-        return;
+      try {
+        const { data, user } = await loginAPI({ email, password });
+        dispatch(authActions.login({ token: data.idToken, ...user }));
+      } catch (error) {
+        return eventHandler.fail(error.message);
       }
-      dispatch(authActions.login({ token: data.idToken, ...user }));
     }
 
     if (form === 'register') {
@@ -63,24 +62,18 @@ const LoginDrawer = () => {
       const email = regEmail.current.value;
       const password = regPassword.current.value;
       const passwordCheck = regPasswordCheck.current.value;
+
       if (passwordCheck !== password) {
-        eventHandler.fail('Both password fields are not identical');
-        return;
+        return eventHandler.fail('Both password fields are not identical');
       }
-
-      const { res, data, user } = await registerAPI({
-        email,
-        password,
-        username,
-      });
-
-      if (!res.ok) {
-        eventHandler.fail(data.error.message);
-        return;
+      try {
+        const { data, user } = await registerAPI({ email, password, username });
+        dispatch(authActions.login({ token: data.idToken, ...user }));
+      } catch (error) {
+        return eventHandler.fail(error.message);
       }
-      dispatch(authActions.login({ token: data.idToken, ...user }));
     }
-    eventHandler.success('Welcome Back!');
+    eventHandler.success('Welcome!');
     history.replace('/home');
   };
 
