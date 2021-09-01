@@ -1,12 +1,12 @@
 import { Fragment, lazy, Suspense } from 'react';
+import { useSelector } from 'react-redux';
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import PrivateRoute from './PrivateRoute';
 import Loading from '../components/layouts/Loading';
 import Header from '../components/Menu/Header';
-import { useSelector } from 'react-redux';
-import Lost from '../pages/Lost';
 
+import Lost from '../pages/Lost';
 const Login = lazy(() => import('../pages/Login'));
 const HomePage = lazy(() => import('../pages/HomePage'));
 const Pets = lazy(() => import('../pages/Pets'));
