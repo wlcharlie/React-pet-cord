@@ -18,7 +18,7 @@ import PetCardLoading from '../layouts/PetCardLoading';
 const defaultImage = 'https://image.flaticon.com/icons/png/512/528/528101.png';
 
 const setPets = (state, action) => {
-  return [...state, ...action];
+  return [...action];
 };
 
 const PetCard = props => {

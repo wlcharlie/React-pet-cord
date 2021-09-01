@@ -9,11 +9,8 @@ import {
   DrawerCloseButton,
   Button,
   useDisclosure,
-  Alert,
-  AlertIcon,
-  useToast,
 } from '@chakra-ui/react';
-import { Fragment, useRef } from 'react';
+import { Fragment, useRef, memo } from 'react';
 import { BsPlusCircleFill } from 'react-icons/bs';
 import useFormEvent from '../../hooks/useFormEvent';
 import { AlertError } from '../layouts/Alert';
@@ -58,7 +55,6 @@ const AddPetMenu = () => {
         onClose={leaveConfirm}
         finalFocusRef={() => window}
         size="sm"
-        onChange={eventHandler.typing()}
       >
         <DrawerOverlay />
         <DrawerContent>
@@ -91,4 +87,4 @@ const AddPetMenu = () => {
   );
 };
 
-export default AddPetMenu;
+export default memo(AddPetMenu);

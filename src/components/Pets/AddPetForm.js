@@ -12,12 +12,11 @@ import {
   Image,
   Divider,
 } from '@chakra-ui/react';
-import { FaCamera } from 'react-icons/fa';
 import { useState, useRef, useReducer } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { addPet } from '../../api/pets';
-import { useHistory } from 'react-router';
+import { petsActions } from '../../store/pets';
+import { FaCamera } from 'react-icons/fa';
 
 const initialData = {
   name: '',
@@ -29,17 +28,17 @@ const initialData = {
 
 const defaultImage = 'https://image.flaticon.com/icons/png/512/528/528101.png';
 
-const newPetReducer = (state, action) => {
+const setNewPetData = (state, action) => {
   return { ...state, [action.type]: [action.value] };
 };
 
 const AddPetForm = props => {
-  const history = useHistory();
   const UserId = useSelector(state => state.auth.id);
+  const dispatch = useDispatch();
   const avatarRef = useRef();
   const [avatar, setAvatar] = useState(defaultImage);
-  const [{ name, dob, species, gender, note }, newPetDispatch] = useReducer(
-    newPetReducer,
+  const [{ name, dob, species, gender, note }, dispatchNewPetData] = useReducer(
+    setNewPetData,
     initialData
   );
 
@@ -49,25 +48,26 @@ const AddPetForm = props => {
   };
 
   const changeHandler = e => {
-    newPetDispatch({ type: e.target.name, value: e.target.value });
+    props.eventHandler.typing();
+    dispatchNewPetData({ type: e.target.name, value: e.target.value });
   };
 
   const addHandler = async e => {
     e.preventDefault();
     props.eventHandler.pending();
-    const { res } = await addPet({
-      avatar: avatarRef.current.files[0],
-      name,
-      dob,
-      species,
-      gender,
-      note,
-      UserId,
-    });
-    if (res.ok) {
+    try {
+      const { data } = await addPet({
+        avatar: avatarRef.current.files[0],
+        name,
+        dob,
+        species,
+        gender,
+        note,
+        UserId,
+      });
       props.eventHandler.success();
-      history.go(0);
-    } else {
+      dispatch(petsActions.update([data]));
+    } catch (error) {
       props.eventHandler.fail();
     }
   };

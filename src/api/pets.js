@@ -1,19 +1,20 @@
 const db = process.env.REACT_APP_DB;
-export const addPet = async data => {
+
+export const addPet = async petsData => {
   const formData = new FormData();
-  for (let i in data) {
-    formData.append(i, data[i]);
+  for (let i in petsData) {
+    formData.append(i, petsData[i]);
   }
-  try {
-    const res = await fetch(db + '/pets', {
-      method: 'POST',
-      body: formData,
-    });
-    const data = await res.json();
-    return { res, data };
-  } catch (error) {
-    return error;
+
+  const res = await fetch(db + '/pets', {
+    method: 'POST',
+    body: formData,
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.message);
   }
+  return { res, data };
 };
 
 export const getPets = async UserId => {
