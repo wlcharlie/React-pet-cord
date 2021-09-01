@@ -9,7 +9,7 @@ import Header from '../components/Menu/Header';
 import Lost from '../pages/Lost';
 const Login = lazy(() => import('../pages/Login'));
 const HomePage = lazy(() => import('../pages/HomePage'));
-const Pets = lazy(() => import('../pages/Pets'));
+const PetsPage = lazy(() => import('../pages/PetsPage'));
 const EditPets = lazy(() => import('../pages/EditPets'));
 const Healths = lazy(() => import('../pages/Healths'));
 const Health = lazy(() => import('../pages/Health'));
@@ -30,7 +30,7 @@ const Index = () => {
             <Route path="/login" component={Login} />
             <PrivateRoute path="/home" component={HomePage} />
             <PrivateRoute path="/pets/:petId" component={EditPets} />
-            <PrivateRoute path="/pets" component={Pets} />
+            <PrivateRoute path="/pets" component={PetsPage} />
             <PrivateRoute path="/healths/:petId" component={Health} />
             <PrivateRoute path="/healths" component={Healths} />
             <PrivateRoute path="/user" component={User} />

@@ -7,16 +7,23 @@ import {
   Button,
   Link,
 } from '@chakra-ui/react';
+import { useEffect, useReducer } from 'react';
+import { useSelector } from 'react-redux';
+
 import { Link as RouteLink } from 'react-router-dom';
-import { FaCat, FaDog, FaHeart, FaAngleRight } from 'react-icons/fa';
 import { toAge } from '../../utils/convertToAge';
+import { FaCat, FaDog, FaHeart, FaAngleRight } from 'react-icons/fa';
+import PetCardLoading from '../layouts/PetCardLoading';
 
 const defaultImage = 'https://image.flaticon.com/icons/png/512/528/528101.png';
+
+const setPets = (state, action) => {
+  return [...state, ...action];
+};
 
 const PetCard = props => {
   const { name, gender, dob, species, note, avatar, _id } = props.data;
   const age = toAge(dob);
-
   return (
     <Box
       d="grid"
@@ -84,7 +91,6 @@ const PetCard = props => {
             </Flex>
           </Flex>
         </Flex>
-
         <Box pos="absolute" bottom="0" right="5px" d={['none', 'block']}>
           {species === 'cat' && <FaCat size={'4em'} color="rgb(0,0,0,0.2)" />}
           {species === 'dog' && <FaDog size={'4em'} color="rgb(0,0,0,0.2)" />}
@@ -94,4 +100,20 @@ const PetCard = props => {
   );
 };
 
-export default PetCard;
+const PetCards = () => {
+  const petData = useSelector(state => state.pets);
+  const [pets, dispatchPets] = useReducer(setPets, []);
+
+  useEffect(() => {
+    if (!petData) return;
+    dispatchPets(petData);
+  }, [petData]);
+
+  return !pets.length ? (
+    <PetCardLoading />
+  ) : (
+    pets.map(e => <PetCard key={e._id} data={e} />)
+  );
+};
+
+export default PetCards;
