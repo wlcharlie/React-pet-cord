@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import PetInfo from '../components/Pets/Detail/InfoCard';
+import PetInfo from '../components/Pets/Detail/PetInfo';
 
 const EditPets = () => {
   return (

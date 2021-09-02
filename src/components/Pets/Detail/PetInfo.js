@@ -18,7 +18,7 @@ import { formatDate } from '../../../utils/convertToDate';
 
 import Motion from '../../motion/Motion';
 import PetDetail from './PetDetail';
-import PetEditForm from './PetEditForm';
+import PetDetailEdit from './PetDetailEdit';
 import BackLink from '../../layouts/BackLink';
 import { useHistory } from 'react-router-dom';
 
@@ -39,7 +39,7 @@ const PetInfo = () => {
       title: 'No found',
       description: 'Sorry, can not found the page your are going to',
       status: 'error',
-      duration: 8000,
+      duration: 5000,
       isClosable: true,
     });
   }
@@ -111,7 +111,7 @@ const PetInfo = () => {
                 )}
                 {edit && (
                   <Motion>
-                    <PetEditForm
+                    <PetDetailEdit
                       pet={pet}
                       switchHandler={switchingHandler}
                       getUpdate={getUpdate}

@@ -10,7 +10,7 @@ import Lost from '../pages/Lost';
 const Login = lazy(() => import('../pages/Login'));
 const HomePage = lazy(() => import('../pages/HomePage'));
 const PetsPage = lazy(() => import('../pages/PetsPage'));
-const EditPets = lazy(() => import('../pages/EditPets'));
+const PetsInfoPage = lazy(() => import('../pages/PetsInfoPage'));
 const Healths = lazy(() => import('../pages/Healths'));
 const Health = lazy(() => import('../pages/Health'));
 const User = lazy(() => import('../pages/User'));
@@ -29,7 +29,7 @@ const Index = () => {
             </Route>
             <Route path="/login" component={Login} />
             <PrivateRoute path="/home" component={HomePage} />
-            <PrivateRoute path="/pets/:petId" component={EditPets} />
+            <PrivateRoute path="/pets/:petId" component={PetsInfoPage} />
             <PrivateRoute path="/pets" component={PetsPage} />
             <PrivateRoute path="/healths/:petId" component={Health} />
             <PrivateRoute path="/healths" component={Healths} />

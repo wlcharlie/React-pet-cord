@@ -14,7 +14,7 @@ import { FaCamera } from 'react-icons/fa';
 
 import { updatePet } from '../../../api/pets';
 
-const PetEditForm = ({ pet, switchHandler, getUpdate }) => {
+const PetDetailEdit = ({ pet, switchHandler, getUpdate }) => {
   const avatar = useRef();
   const [petData, setPetData] = useState({
     ...pet,
@@ -147,4 +147,4 @@ const PetEditForm = ({ pet, switchHandler, getUpdate }) => {
   );
 };
 
-export default PetEditForm;
+export default PetDetailEdit;
