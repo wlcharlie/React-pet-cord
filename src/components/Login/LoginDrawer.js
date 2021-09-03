@@ -19,7 +19,7 @@ import { registerAPI, loginAPI } from '../../api/auth';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import useFormEvent from '../../hooks/useFormEvent';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 const formChangeHandler = state => {
   return state === 'login' ? 'register' : 'login';

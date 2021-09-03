@@ -14,6 +14,7 @@ import { Link as RouteLink } from 'react-router-dom';
 import { toAge } from '../../utils/convertToAge';
 import { FaCat, FaDog, FaHeart, FaAngleRight } from 'react-icons/fa';
 import PetCardLoading from '../layouts/PetCardLoading';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const defaultImage = 'https://image.flaticon.com/icons/png/512/528/528101.png';
 
@@ -26,6 +27,7 @@ const PetCard = props => {
   const age = toAge(dob);
   return (
     <Box
+      as={motion.div}
       d="grid"
       gridTemplateColumns="1fr 2fr"
       pos={[null, 'relative', null, 'static']}
@@ -36,6 +38,13 @@ const PetCard = props => {
       borderRadius="0.5rem"
       boxShadow="base"
       bgColor="white"
+      initial={{ transform: 'translateX(20%)', opacity: 0 }}
+      animate={{
+        transform: 'translateX(0%)',
+        opacity: 1,
+        transition: { type: 'spring', delay: props.time / 4 },
+      }}
+      exit={{ opacity: 0 }}
     >
       <Box
         pos={[null, 'absolute', null, 'static']}
@@ -112,7 +121,11 @@ const PetCards = () => {
   return !pets.length ? (
     <PetCardLoading />
   ) : (
-    pets.map(e => <PetCard key={e._id} data={e} />)
+    <AnimatePresence exitBeforeEnter>
+      {pets.map((e, i) => (
+        <PetCard key={e._id} data={e} time={i} />
+      ))}
+    </AnimatePresence>
   );
 };
 
