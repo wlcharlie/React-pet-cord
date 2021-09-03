@@ -45,7 +45,7 @@ const PetDetailEdit = ({ pet, switchHandler, getUpdate }) => {
       species: petData.species,
       note: petData.note,
     };
-    const { res, data } = await updatePet({
+    const { res } = await updatePet({
       data: updateData,
       petId: petData._id,
     });
