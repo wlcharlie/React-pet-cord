@@ -2,6 +2,7 @@ import {
   Drawer,
   DrawerFooter,
   DrawerHeader,
+  DrawerBody,
   DrawerContent,
   Button,
   Alert,
@@ -18,6 +19,7 @@ import { registerAPI, loginAPI } from '../../api/auth';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import useFormEvent from '../../hooks/useFormEvent';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const formChangeHandler = state => {
   return state === 'login' ? 'register' : 'login';
@@ -83,13 +85,24 @@ const LoginDrawer = () => {
         <form onSubmit={submitHandler}>
           <DrawerContent background={['rgba(255,255,255,0.95)', null, 'white']}>
             <DrawerHeader textAlign="center">PetCord</DrawerHeader>
-
-            {form === 'login' && (
-              <LoginForm dispatchForm={dispatchForm} loginData={loginData} />
-            )}
-            {form === 'register' && (
-              <RegisterForm dispatchForm={dispatchForm} regData={regData} />
-            )}
+            <DrawerBody overflowY="hidden">
+              <AnimatePresence exitBeforeEnter initial={false}>
+                {form === 'login' && (
+                  <LoginForm
+                    key={form}
+                    dispatchForm={dispatchForm}
+                    loginData={loginData}
+                  />
+                )}
+                {form === 'register' && (
+                  <RegisterForm
+                    key={form}
+                    dispatchForm={dispatchForm}
+                    regData={regData}
+                  />
+                )}
+              </AnimatePresence>
+            </DrawerBody>
             <DrawerFooter flexDirection="column" h="20%">
               {error && (
                 <Alert status="warning" mb={2}>
