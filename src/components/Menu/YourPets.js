@@ -31,7 +31,7 @@ const Pets = () => {
       initPet();
     }
     // eslint-disable-next-line
-  }, []);
+  }, [pets]);
 
   if (!pets.length) {
     return (

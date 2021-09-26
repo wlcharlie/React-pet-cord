@@ -13,15 +13,17 @@ const PrivateRoute = ({ component: Component, path }) => {
 
   return (
     <Route
+      key={path}
       path={path}
       render={() =>
         isLoggedIn ? (
           <motion.div
+            key={path}
             variants={variants}
             initial="hidden"
             animate="show"
             exit="close"
-            transition={{ delay: 0.3, duration: 0.2 }}
+            transition={{ delay: 0.3 }}
           >
             <Component />
           </motion.div>

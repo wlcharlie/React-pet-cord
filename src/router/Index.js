@@ -18,22 +18,31 @@ const User = lazy(() => import('../pages/User'));
 const Index = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const location = useLocation();
+
   return (
     <Fragment>
       {isLoggedIn && <Header />}
       <Suspense fallback={<Loading />}>
-        <AnimatePresence exitBeforeEnter initial={false}>
-          <Switch location={location} key={location.pathname}>
+        <AnimatePresence exitBeforeEnter>
+          <Switch key={location.pathname}>
             <Route path="/" exact>
               <Redirect to="/login" />
             </Route>
-            <Route path="/login" component={Login} />
-            <PrivateRoute path="/home" component={HomePage} />
-            <PrivateRoute path="/pets/:petId" component={PetsInfoPage} />
-            <PrivateRoute path="/pets" component={PetsPage} />
-            <PrivateRoute path="/healths/:petId" component={Health} />
-            <PrivateRoute path="/healths" component={Healths} />
-            <PrivateRoute path="/user" component={User} />
+            <Route path="/login" component={Login} key="login" />
+            <PrivateRoute path="/home" component={HomePage} key="home" />
+            <PrivateRoute
+              path="/pets/:petId"
+              component={PetsInfoPage}
+              key="pet"
+            />
+            <PrivateRoute path="/pets" component={PetsPage} key="pets" />
+            <PrivateRoute
+              path="/healths/:petId"
+              component={Health}
+              key="health"
+            />
+            <PrivateRoute path="/healths" component={Healths} key="healths" />
+            <PrivateRoute path="/user" component={User} key="login" />
             <Route path="*" component={Lost} />
           </Switch>
         </AnimatePresence>
